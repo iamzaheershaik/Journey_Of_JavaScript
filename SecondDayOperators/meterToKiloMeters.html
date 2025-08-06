@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Enter the Value of in Meters = <input type ="number" id="m"><br><br>
+<input type="button" value="convert"  onclick="return kilometerConvert()">
+<h2 id="conversion"></h2>
+
+<script>
+    var M = kilometerConvert();
+
+    function kilometerConvert(){
+        var m = Number(document.getElementById("m").value);
+        var conversion = m / 1000;
+        document.getElementById("conversion").innerHTML = "The Value in KMs = " + conversion +"kms";
+    }
+</script>
+</body>
+</html>

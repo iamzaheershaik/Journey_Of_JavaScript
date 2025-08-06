@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Enter The Dollar  = <input type ="number" id="d"><br><br>
+<input type="button" value="convert"  onclick="return Dollar()">
+<h2  id="conversion"></h2>
+<script>
+  var D =Dollar();
+  function Dollar(){
+    var d = Number(document.getElementById("d").value);
+    var  conversion = 87.66 *d
+    document.getElementById("conversion").innerHTML = "Conversion Value of USD TO INR = " + "₹"+conversion;
+  }
+</script>
+</body>
+</html>

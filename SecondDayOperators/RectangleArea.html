@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Enter The Length = <input type ="number" id="l"><br><br>
+Enter The Height = <input type ="number" id="h"><br><br>
+<input type="button" value="Area" onclick ="return area()">
+<h2 id="area"></h2>
+<script>
+    var a  = area();
+    function area(){
+        var l = Number(document.getElementById("l").value);
+        var h = parseInt(document.getElementById("h").value);
+        var area = l * h;
+        document.getElementById("area").innerHTML = "Area of Rectangle = " + area+"m²";
+    }
+</script>
+</body>
+</html>

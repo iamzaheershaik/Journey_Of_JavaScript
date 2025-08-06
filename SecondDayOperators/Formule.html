@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>formulae</title>
+</head>
+<body>
+<h2>Formulae</h2>
+<p>(a+b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup></p>
+
+Enter the Value of a = <input type="number" id="a"><br><br>
+Enter the Value of b = <input type="number" id="b"><br><br>
+<input type="button" value="Value" onclick = "return formulae()">
+<h2 id="result"></h2>
+  <script>
+    var F = formulae();
+    function formulae(){
+      var a = Number(document.getElementById("a").value);
+      var b = Number(document.getElementById("b").value);
+      var result = a * a + 2 * a * b + b * b ;
+      document.getElementById("result").innerHTML = "Value After Inputs In Above = " + result;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TriangleArea</title>
+</head>
+<body>
+Enter The Base  = <input type ="number" id="b"><br><br>
+Enter The Height = <input type ="number" id="h"><br><br>
+<input type="button" value="FindArea" onclick ="return triangleArea()">
+<h2  id="result"></h2>
+<script>
+    var a  = triangleArea();
+    function triangleArea(){
+        var b = Number(document.getElementById("b").value);
+        var h = parseInt(document.getElementById("h").value);
+        var result = 0.5 * b * h;
+        document.getElementById("result").innerHTML = "Area of Triangle = " + result+"m²";
+    }
+</script>
+</body>
+</html>

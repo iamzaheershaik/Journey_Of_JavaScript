@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Enter the Radius of Circle = <input type ="number" id="r"><br><br>
+<input type="button" value="FindArea"  onclick="return CircleArea()">
+<h2  id="area"></h2>
+  <script>
+    var R =CircleArea();
+    function CircleArea(){
+      var r = Number(document.getElementById("r").value);
+      var area = 3.14  * r *r;
+      document.getElementById("area").innerHTML = "areaOfCircle = " + area +"m²";
+    }
+  </script>
+</body>
+</html>
