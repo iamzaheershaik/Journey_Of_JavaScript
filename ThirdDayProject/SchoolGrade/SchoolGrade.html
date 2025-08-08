@@ -1,0 +1,153 @@
+<html>
+    <head>
+    <link rel="stylesheet" href="schoolGrade.css">
+</head>
+    <body>
+        <table border="1" align="center">
+
+            <caption>PercentageCalculate</caption>
+            <tr>
+                <td>Name Of Student</td>
+                <td><input type="text" id="name"></td>
+            </tr>
+
+            <tr>
+                <td>English</td>
+                <td><input type="number" id="English"></td>
+            </tr>
+
+            <tr>
+                <td>History</td>
+                <td><input type="number" id="History"></td>
+            </tr>
+            <tr>
+                <td>Geography</td>
+                <td><input type="number" id="Geography"></td>
+            </tr>
+
+            <tr>
+                <td>Biology</td>
+                <td><input type="number" id="Biology"></td>
+            </tr>
+
+            <tr>
+                <td>Physics</td>
+                <td><input type="number" id="Physics"></td>
+            </tr>
+
+            <tr>
+                <td>Chemistry</td>
+                <td><input type="number" id="Chemistry"></td>
+            </tr>
+
+            <tr>
+                <td>EVS</td>
+                <td><input type="number" id="Evs"></td>
+            </tr>
+
+            <tr>
+                <td>Games</td>
+                <td><input type="number" id="Games"></td>
+            </tr>
+
+            <tr>
+            <td><input type="submit" value="Calculate" id="Button" onclick="return marksCalculate()"></td>
+            </tr>
+        </table>
+            <br>
+            <br>
+            <br>
+        <table border="1" align="center">
+            <tr>
+                <td>Name Of Student</td>
+                <td><input type="text" id="ResultName"></td>
+            </tr>
+            <tr>
+                <td>MarksInEnglish</td>
+                <td><input type="number" id="ResultInEnglish"></td>
+            </tr>
+            <tr>
+                <td>MarksInMarksInHistory</td>
+                <td><input type="number" id="ResultInHistory"></td>
+            </tr>
+            <tr>
+                <td>MarksInGeography</td>
+                <td><input type="number" id="ResultInGeography"></td>
+            </tr>
+            <tr>
+                <td>MarksInBiology</td>
+                <td><input type="number" id="ResultInBiology"></td>
+            </tr>
+            <tr>
+                <td>MarksInPhysics</td>
+                <td><input type="number" id="ResultInPhysics"></td>
+            </tr>
+            <tr>
+                <td>MarksInChemistry</td>
+                <td><input type="number" id="ResultInChemistry"></td>
+            </tr>
+            <tr>
+                <td>MarksInEVS</td>
+                <td><input type="number" id="ResultInEvs"></td>
+            </tr>
+            <tr>
+                <td>MarksInP.E.T</td>
+                <td><input type="number" id="ResultInGames"></td>
+            </tr>
+            <tr>
+                <td>MarksForEachSubject</td>
+                <td><input type="text"  value="100Marks" id="Each"></td>
+            </tr>
+              <tr>
+                <td>OutofMarks</td>
+                <td><input type="text"  value="100 x 8 = 800Marks" id="Out"></td>
+            </tr>
+            <tr>
+                <td>TotalMarksScored</td>
+                <td><input type="number" id="ScoredMarks"></td>
+            </tr>
+            <tr>
+                <td>MaxMarks</td>
+                <td><input type="number" id="MaxMarks"></td>
+            </tr>
+            <tr>
+                <td>MinMarks</td>
+                <td><input type="number" id="MinMarks"></td>
+            </tr>
+            <tr>
+                <td>TotalPercentageScored</td>
+                <td><input type="number" id="ScoredPercentage"></td>
+            </tr>
+        </table>
+        <script>
+            function marksCalculate(){
+                var name        = document.getElementById("name").value;
+                var English     =   Number(document.getElementById("English").value);
+                var History     =   Number(document.getElementById("History").value);
+                var Geography   =   Number(document.getElementById("Geography").value);
+                var Biology     =   Number(document.getElementById("Biology").value);
+                var Physics     =   Number(document.getElementById("Physics").value);
+                var Chemistry   =   Number(document.getElementById("Chemistry").value);
+                var Evs         =   Number(document.getElementById("Evs").value);
+                var Games         =   Number(document.getElementById("Games").value);
+                document.getElementById("ResultName").value = name;
+                document.getElementById("ResultInEnglish").value = English;
+                document.getElementById("ResultInHistory").value = History;
+                document.getElementById("ResultInGeography").value = Geography;
+                document.getElementById("ResultInBiology").value = Biology;
+                document.getElementById("ResultInPhysics").value = Physics;
+                document.getElementById("ResultInChemistry").value = Chemistry;
+                document.getElementById("ResultInEvs").value = Evs;
+                document.getElementById("ResultInGames").value = Games;
+                var scored = English + History + Geography + Biology + Physics + Chemistry + Evs + Games;
+                document.getElementById("ScoredMarks").value = scored;
+                var maxMarks = Math.max(English, History, Geography, Biology, Physics, Chemistry, Evs, Games);
+                document.getElementById("MaxMarks").value = maxMarks;
+                var minMarks = Math.min(English, History, Geography, Biology, Physics, Chemistry, Evs, Games);
+                document.getElementById("MinMarks").value = minMarks;
+                var Percentage = ((English + History + Geography + Biology + Physics + Chemistry + Evs + Games)/800)*100;
+                document.getElementById("ScoredPercentage").value = Percentage;
+            }
+        </script>
+    </body>
+</html>

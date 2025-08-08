@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="Electricity.css">
+    </head>
+    <body>
+        <table border="1" align="center">
+            <caption>Electricity-Bill-Generater</caption>
+            <tr>
+                <td>Enter Your Name: </td>
+                <td><input type="text" id="name"></td>
+            </tr>
+            <tr>
+                <td>Enter Your Address: </td>
+                <td><textarea type="text" id="address"></textarea></td>
+            </tr>
+             <tr>
+                <td>ConsumedUnits</td>
+                <td><input type="number" id="Units"></td> 
+            </tr>
+            <tr>
+                <td><input type="submit" value="calculate"  id="billAmount" onclick="return generateBill()"></td>
+            </tr>    
+        </table>
+<br>
+<br>
+<br>
+        <table border="1" align="center">
+            <tr>
+                <td>Name of Consumer</td>
+                <td><input type="text" id="resultName"></td> 
+            </tr>
+             <tr>
+                <td>Address</td>
+                <td><textarea type="text" id="resultAddress"></textarea></td> 
+            </tr>
+            <tr>
+                <td>ConsumedUnits</td>
+                <td><input type="number" id="resultUnits"></td> 
+            </tr>
+             <tr>
+                <td>FixedUnits</td>
+                <td><input type="text" value="1 Unit = ₹6"></td> 
+            </tr>
+            <tr>
+                <td>TotalAmount</td>
+                <td><input type="number" id="resultAmount"></td> 
+            </tr>
+             <tr>
+                <td>G.S.T-Amount</td>
+                <td><input type="number" id="GST"></td> 
+            </tr>
+             <tr>
+                <td>PayAmount</td>
+                <td><input type="number" id="Pay"></td> 
+            </tr>
+    <script>
+        function generateBill(){
+            var name = document.getElementById("name").value;
+            var Address =document.getElementById("address").value;
+            var Units = Number(document.getElementById("Units").value);
+            document.getElementById("resultName").value = name;
+            document.getElementById("resultAddress").value = Address;
+            document.getElementById("resultUnits").value = Units;
+            var TotalAmount = Units * 6;
+            document.getElementById("resultAmount").value = TotalAmount;
+            var GST_Amount =(TotalAmount * 9)/100;
+            document.getElementById("GST").value = GST_Amount;
+            var PayAmount = TotalAmount + GST_Amount;
+            document.getElementById("Pay").value = PayAmount;
+            
+        }
+    </script>
+        </table>
+    </body>
+</html>
