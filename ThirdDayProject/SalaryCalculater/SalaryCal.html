@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>SalaryCalculater</title>
+    </head>
+    <body>
+        <div>
+                    <h2 align="center">SalaryCalculater</h2>
+        <table border="1" align="center">
+            <tr>
+                <td>Age</td>
+                <td><input type="number" placeholder="Enter Your Age" id="Age"></td>
+                <td>Years Of Working</td>
+                <td><input type="number" placeholder="How many years" id="Year"></td>
+            </tr>
+           
+             <tr>
+                <td>Job </td>
+                <td><input type="text" placeholder="Enter your Job role" id="role"></td>
+            </tr>
+            <tr>
+                <td>Hours</td>
+                <td><input type="number" placeholder="Total Hours a day" id="hour"></td>
+                <td>Work Days Per Week</td>
+                <td><input type="number" placeholder="Total Days a week" id="week"></td>
+            </tr>
+            <tr>
+                <td>Net Salary</td>
+                <td><input type="number" id="Net"></td>
+                <td>Calculation type</td>
+                <td>
+                    <select id="calculationType">
+                            <option value="month">monthly</option>
+                            <option value="day">daily</option>
+                            <option value="hour">hourly</option>
+                            <option value ="yearly">Yearly</option>
+                    </select>
+                 </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" id="calculate" onclick = "return generateSalary()">Create Salary Overview</button>
+                </td>
+            </tr>
+        </table>
+        </div>
+        <div align="center">
+            <h3 id="title">on your job as  _________ this is your salary overview:</h3>
+               <table border="1">
+                    <tr>
+                        <th>Hourly:</th>
+                        <td id="hourly">0</td>
+                    </tr>
+                    <tr>
+                        <th>Daily:</th>
+                        <td id="daily">0</td>
+                    </tr>
+                    <tr>
+                        <th>Montlhy:</th>
+                        <td id="monthly">0</td>
+                    </tr>
+                    <tr>
+                        <th>Yearly:</th>
+                        <td id="yearly">0</td>
+                    </tr>
+                </table>
+                 <h5 id="salaryYears">for __ years of working your total salary is:</h5>
+                <h2 id="totalSalary">0</h2>
+        </div>
+        <script>
+            function generateSalary(){
+               var Age    =   Number(document.getElementById("Age").value);
+               var Year = Number(document.getElementById("Year").value);
+               var role = document.getElementById("name").value;
+               var hour    =   Number(document.getElementById("hour").value);
+               var week = Number(document.getElementById("week").value);
+               var NetSalary = Number(document.getElementById("Net").value);
+            }
+        </script>
+    </body>
+</html>
