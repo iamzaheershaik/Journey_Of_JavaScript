@@ -1,0 +1,15 @@
+FirstValue:<input type="number" id="First"><br><br>
+SecondValue:<input type="number" id="Second"><br><br>
+<input type="button" value="Compare" onclick="compareMax()">
+<h2 id="result"></h2>
+<script>
+    function compareMax(){
+        var firstValue = Number(document.getElementById('First').value);
+        var secondValue = Number(document.getElementById('Second').value);
+        if(firstValue>secondValue){
+            document.getElementById('result').innerHTML = firstValue;
+        }else{
+            document.getElementById('result').innerHTML = secondValue;
+        }
+    }
+</script>

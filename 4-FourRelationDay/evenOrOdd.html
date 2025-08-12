@@ -1,0 +1,13 @@
+Enter The Number:<input type="number" id="evenOrOdd"><br><br>
+<input type="button" value="Compare" onclick="evenOrOdd()">
+<h2 id="Result"></h2>
+<script>
+    function evenOrOdd(){
+        var calculateEvenOrOdd = Number(document.getElementById('evenOrOdd').value);
+        if(calculateEvenOrOdd / 2 == 0){
+            document.getElementById('Result').innerHTML = 'Your Number is ' + calculateEvenOrOdd + 'because it divisible by two';
+        }else{
+            document.getElementById('Result').innerHTML = 'Your Number is ' + calculateEvenOrOdd + 'because it is not divisible by two';
+        }
+    }
+</script>

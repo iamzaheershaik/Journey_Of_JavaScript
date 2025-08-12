@@ -1,0 +1,13 @@
+Enter The Age:<input type="number" id="age"><br><br>
+<input type="button" value="Compare" onclick="ageForVote()">
+<h2 id="canVote"></h2>
+<script>
+    function ageForVote(){
+        var age = Number(document.getElementById('age').value);
+        if(age>=18){
+            document.getElementById('canVote').innerHTML = 'Your age is ' + age + 'You can Vote';
+        }else{
+            document.getElementById('canVote').innerHTML = 'Your age is ' + age + 'You cannot Vote';
+        }
+    }
+</script> 

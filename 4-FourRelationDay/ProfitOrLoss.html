@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfitOrLoss</title>
+</head>
+<body>
+    BuyingPrice: <input type="number" id="Price">
+    <br>
+    <br>
+    SellingPrice: <input type="number" id="Sell">
+    <br>
+    <br>
+    <input type="button" value="LossOrProfit" onclick="return check()">
+
+    <h2 id="result"></h2>
+    <script>
+        function check(){
+            var price = Number(document.getElementById("Price").value);
+            var sell  = Number(document.getElementById("Sell").value);
+            if(price>sell){
+                var lossValue = price-sell;
+                var lossPercentage = ((lossValue/price) *100);
+                document.getElementById("result").innerHTML = "<span style='color:red'>Loss: " + lossValue + "Percentage of Loss" + lossPercentage +"%" + "</span>";
+            }
+            else{
+                var profitValue = sell - price;
+                var profitPercentage = ((profitValue / price)* 100);
+                document.getElementById("result").innerHTML = "<span style='color:green'>Profit: " +    profitValue    +   "   Percentage of Profit   "  + profitPercentage  +"%" + "</span>";
+            }
+        }
+    </script>
+
+</body>
+</html>

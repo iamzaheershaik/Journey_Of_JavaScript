@@ -1,0 +1,13 @@
+Enter Your weight (in Kg) :<input type="number" id="Weight"><br><br>
+<input type="button" value="Compare" onclick="calculateWeight()">
+<h2 id="Check"></h2>
+<script>
+    function calculateWeight(){
+        var calculateWeight = Number(document.getElementById('Weight').value);
+        if(calculateWeight >=60){
+            document.getElementById('Check').innerHTML = 'Your Weight is ' + calculateWeight + '. You are Healthy.'
+        }else{
+            document.getElementById('Check').innerHTML = 'Your Weight is ' + calculateWeight + '. You are Week.'
+        }
+    }
+</script>

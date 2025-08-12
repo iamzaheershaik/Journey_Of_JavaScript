@@ -1,0 +1,13 @@
+Enter Your Height (in feet) :<input type="number" id="Height"><br><br>
+<input type="button" value="Compare" onclick="calculateHeight()">
+<h2 id="howTall"></h2>
+<script>
+    function calculateHeight(){
+        var calculateHeight = Number(document.getElementById('Height').value);
+        if(calculateHeight>=6){
+            document.getElementById('howTall').innerHTML = 'Your height is ' + calculateHeight + '. You are tall.'
+        }else{
+            document.getElementById('howTall').innerHTML = 'Your height is ' + calculateHeight + '. You are short.'
+        }
+    }
+</script>
