@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electricity Bill with Nested If</title>
+</head>
+
+<body>
+    <h2>Electricity Bill Calculator (Nested If)</h2>
+
+    Units Consumed: <input type="number" id="units"><br><br>
+    <input type="button" value="Calculate Bill" onclick="calculateBill()"><br><br>
+
+    <p id="baseAmount"></p>
+    <p id="gstAmount"></p>
+    <p id="totalWithGst"></p>
+
+    <script>
+        function calculateBill() {
+            var units = Number(document.getElementById("units").value);
+            document.getElementById('units').value = units;
+            var unitPrice = 0;
+            if (units <= 1000) {
+                if (units <= 700) {
+                    if (units <= 450) {
+                        if (units <= 250) {
+                            if (units <= 100) {
+                                unitPrice = 4.95;
+                            } else {
+                                unitPrice = 5.60;
+                            }
+                        } else {
+                            unitPrice = 6.15
+                        }
+                    } else {
+                        unitPrice = 6.95
+                    }
+                } else {
+                    unitPrice = 7.50;
+                }
+            } else {
+                unitPrice = 8.15;
+            }
+
+            var Amount = units * unitPrice;
+            document.getElementById('baseAmount').innerHTML = "Your Total Amount = " + Amount;
+            var Gst = (Amount * 18) / 100;
+            document.getElementById('gstAmount').innerHTML = "Your Gst Amount = " + Gst;
+            var totalAmount = Amount + Gst;
+            document.getElementById('totalWithGst').innerHTML = "Your Total Amount =" + totalAmount;
+
+        }
+    </script>
+</body>
+
+</html>

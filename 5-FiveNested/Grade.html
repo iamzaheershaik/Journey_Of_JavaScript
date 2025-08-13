@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Marks In English: <input type="number" id="English"><br><br>
+    Marks In Hindi: <input type="number" id="Hindi"><br><br>
+    Marks In Telugu: <input type="number" id="Telugu"><br><br>
+    Marks In Science: <input type="number" id="Science"><br><br>
+    <input type="button" value="Calculate" onclick="return calculateGrade()">
+    <h2 id="totalMarks"></h2>
+    <h2 id="totalPercentage"></h2>
+    <h2 id="scordGrade"></h2>
+    <script>
+        function calculateGrade(){
+            var eng = Number(document.getElementById('English').value);
+            var hin = Number(document.getElementById('Hindi').value);
+            var tel = Number(document.getElementById('Telugu').value);
+            var sci = Number(document.getElementById('Science').value);
+            var Grade = 0;
+
+            var Total=(eng+hin+tel+sci);
+            document.getElementById('totalMarks').innerHTML = Total;
+            var totalPercentage=(Total/400) * 100;
+            document.getElementById('totalPercentage').innerHTML = totalPercentage;
+
+            if(totalPercentage>=35){
+                if(totalPercentage>=50){
+                    if(totalPercentage>=60){
+                        if(totalPercentage>=70){
+                            if(totalPercentage>=90){
+                                Grade = 'A';
+                            }else{
+                                Grade = 'B';
+                            }
+                        }else{
+                            Grade = 'C';
+                        }
+                    }else{
+                        Grade = 'D';
+                    }
+                }else{
+                     Grade = 'E';
+                }
+            }else{
+                Grade = 'F';
+            }
+
+            if(Grade === 'F'){
+                document.getElementById('scordGrade').innerHTML = "Your Grade is " + Grade + " You Failed The Exam Try Next Time";
+            }else{
+                document.getElementById('scordGrade').innerHTML = "Your Grade is " + Grade + " You Pass The Exam Congrulations";
+            }
+        }
+    </script>
+</body>
+</html>

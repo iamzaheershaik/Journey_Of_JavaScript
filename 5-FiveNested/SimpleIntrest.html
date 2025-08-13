@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Princicple_Amount: <input type="number" id="Principle"><br><br>
+    Term_Years: <input type="number" id="Term"><br><br>
+    <input type="button" value="FindRate" onclick="findRate()">
+    <p id="rate"></p>
+    <P id="totalIntrest"></P>
+    <p id="totalAmount"></p>
+    <script>
+        function findRate(){
+            var Amount = Number(document.getElementById("Principle").value);
+            var Term = Number(document.getElementById("Term").value);
+            var Rate = 0;
+            if(Term>0){
+                if(Term>3){
+                    if(Term>6){
+                        if(Term>9){
+                            if(Term>12){
+                                Rate = 4.5;
+                            }else{
+                                Rate = 3.5;
+                            }
+                        }else{
+                            Rate = 2.5;
+                        }
+                    }else{
+                        Rate = 1.5; 
+                    }
+                }else{
+                    Rate = 1;
+                }
+            }else{
+                Rate = 0.5;
+            }
+            document.getElementById('rate').innerHTML = Rate;
+            var intrest = (Amount * Term * Rate )/100
+            document.getElementById('totalIntrest').innerHTML = "Your Total Intrest For" + Term + "Is the Amount" + intrest;
+            var totalPay = Amount + intrest;
+            document.getElementById('totalAmount').innerHTML = "Your Total Amount after including the  intrest for " + Term + "Is the Amount" + totalPay;
+        }
+    </script>
+</body>
+</html>

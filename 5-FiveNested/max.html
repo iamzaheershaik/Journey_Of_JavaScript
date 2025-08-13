@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max</title>
+</head>
+<body>
+    firstValue: <input type="number" id="first"><br><br>
+    secondValue: <input type="number" id="second"><br><br>
+    thirdValue: <input type="number" id="third"><br><br>
+    <input type="button" value="compare" onclick="return compareMax()">
+    <h2 id="result"></h2>
+
+    <script>
+        function compareMax(){
+            var first = Number(document.getElementById('first').value);
+            var second = Number(document.getElementById('second').value);
+            var third = Number(document.getElementById('third').value);
+            var max =0;
+
+            if(first>second){
+                if(first>third){
+                    max = first
+                }else{
+                    max = third
+                }
+            }else{
+                if(second>third){
+                    max = second;
+                }else{
+                    max = third;
+                }
+            }
+         
+           document.getElementById('result').innerHTML = "The Max Value is " + max;
+        }   
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>min</title>
+</head>
+<body>
+    firstValue: <input type="number" id="first"><br><br>
+    secondValue: <input type="number" id="second"><br><br>
+    thirdValue: <input type="number" id="third"><br><br>
+    <input type="button" value="compare" onclick="return compareMin()">
+    <h2 id="result"></h2>
+
+    <script>
+        function compareMin(){
+            var first = Number(document.getElementById('first').value);
+            var second = Number(document.getElementById('second').value);
+            var third = Number(document.getElementById('third').value);
+            var min =0;
+
+            if(first<second){
+                if(first<third){
+                    min = first
+                }else{
+                    min = third
+                }
+            }else{
+                if(second<third){
+                    min = second;
+                }else{
+                    min = third;
+                }
+            }
+         
+           document.getElementById('result').innerHTML = "The Min Value is " + min;
+        }   
+    </script>
+</body>
+</html>
