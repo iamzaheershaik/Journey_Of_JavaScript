@@ -1,0 +1,131 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fastFood</title>
+</head>
+
+<body>
+    <select id="SelectFood" onchange=" return selectFood()">
+        <option value="Select">SelectOption</option>
+        <option value="1">1.Puri</option>
+        <option value="2">2.Dosha</option>
+        <option value="3">3.Upma</option>
+        <option value="4">4.Idli</option>
+    </select>
+    <div id="Fooditem"></div>
+    <h2 id="Amount"></h2>
+    <h2 id="discount"></h2>
+    <h2 id="payAmount"></h2>
+    <script>
+        function selectFood() {
+            let Food = document.getElementById('SelectFood').value;
+            if (Food === "1") {
+                var Puri = "How Many Plates of  Puri = <input type='number' id='howPuri'/> <br><br> <input type='submit' value='calculatePrice' onclick ='return puriPrice()' />"
+                document.getElementById('Fooditem').innerHTML = Puri;
+            } else if (Food === "2") {
+                var Dosha = "How Many Plates of  Dosha = <input type='number' id='howDosha'/> <br><br> <input type='submit' value='calculatePrice' onclick ='return doshaPrice()' />"
+                document.getElementById('Fooditem').innerHTML = Dosha;
+            } else if (Food === "3") {
+                var Upma = "How Many Plates of  Upma = <input type='number' id='howUpma'/> <br><br> <input type='submit' value='calculatePrice' onclick ='return upmaPrice()' />"
+                document.getElementById('Fooditem').innerHTML = Upma;
+            } else if (Food === "4") {
+                var Idli = "How Many Plates of  Idli = <input type='number' id='howIdli'/> <br><br> <input type='submit' value='calculatePrice' onclick ='return idliPrice()' />"
+                document.getElementById('Fooditem').innerHTML = Idli;
+            } else {
+                document.getElementById('Fooditem').innerHTML = "Select at least one Proper Food!!";
+            }
+
+        }
+        function puriPrice() {
+            var totalPuri = Number(document.getElementById('howPuri').value);
+            var price = 60 * totalPuri;
+            document.getElementById('Amount').innerHTML = "The TotalCost of " + totalPuri + "puri is ₹" + price;
+            if (price >= 200 && price <= 300) {
+                var discount = ((5 / 100) * price);
+                document.getElementById('discount').innerHTML = "The 5% TotalDiscount Amount on " + totalPuri + "puri is ₹" + discount;
+                document.getElementById('payAmount').innerHTML = "The Final Total Amount on " + totalPuri + "after discount ₹" + (price - discount);
+            } else if (price >= 300 && price <= 500) {
+                var discount = ((7.5 / 100) * price);
+                document.getElementById('discount').innerHTML = "The 7.5% TotalDiscount Amount on " + totalPuri + "puri is ₹" + discount;
+                document.getElementById('payAmount').innerHTML = "The Final Total Amount on " + totalPuri + "after discount ₹" + (price - discount);
+            } else if (price >= 500 && price <= 1000) {
+                var discount = ((10 / 100) * price);
+                document.getElementById('discount').innerHTML = "The 10% TotalDiscount Amount on " + totalPuri + "puri is ₹" + discount;
+                document.getElementById('payAmount').innerHTML = "The Final Total Amount on " + totalPuri + "after discount ₹" + (price - discount);
+            } else (
+                document.getElementById('inputData').innerHTML = "Select at least one Proper choice!!"
+            )
+        }
+        function doshaPrice() {
+            var totalDosha = Number(document.getElementById('howDosha').value);
+            var price = 80 * totalDosha;
+            document.getElementById('Amount').innerHTML = "The TotalCost of " + totalDosha + " dosha is ₹" + price;
+
+            if (price >= 200 && price <= 300) {
+                var discount = ((5 / 100) * price);
+                document.getElementById('discount').innerHTML = "The 5% TotalDiscount Amount on " + totalDosha + " dosha is ₹" + discount;
+                document.getElementById('payAmount').innerHTML = "The Final Total Amount on " + totalDosha + " after discount ₹" + (price - discount);
+            } else if (price >= 300 && price <= 500) {
+                var discount = ((7.5 / 100) * price);
+                document.getElementById('discount').innerHTML = "The 7.5% TotalDiscount Amount on " + totalDosha + " dosha is ₹" + discount;
+                document.getElementById('payAmount').innerHTML = "The Final Total Amount on " + totalDosha + " after discount ₹" + (price - discount);
+            } else if (price >= 500 && price <= 1000) {
+                var discount = ((10 / 100) * price);
+                document.getElementById('discount').innerHTML = "The 10% TotalDiscount Amount on " + totalDosha + " dosha is ₹" + discount;
+                document.getElementById('payAmount').innerHTML = "The Final Total Amount on " + totalDosha + " after discount ₹" + (price - discount);
+            } else (
+                document.getElementById('inputData').innerHTML = "Select at least one Proper choice!!"
+            )
+        }
+
+        function upmaPrice() {
+            var totalUpma = Number(document.getElementById('howUpma').value);
+            var price = 50 * totalUpma;
+            document.getElementById('Amount').innerHTML = "The TotalCost of " + totalUpma + " upma is ₹" + price;
+
+            if (price >= 200 && price <= 300) {
+                var discount = ((5 / 100) * price);
+                document.getElementById('discount').innerHTML = "The 5% TotalDiscount Amount on " + totalUpma + " upma is ₹" + discount;
+                document.getElementById('payAmount').innerHTML = "The Final Total Amount on " + totalUpma + " after discount ₹" + (price - discount);
+            } else if (price >= 300 && price <= 500) {
+                var discount = ((7.5 / 100) * price);
+                document.getElementById('discount').innerHTML = "The 7.5% TotalDiscount Amount on " + totalUpma + " upma is ₹" + discount;
+                document.getElementById('payAmount').innerHTML = "The Final Total Amount on " + totalUpma + " after discount ₹" + (price - discount);
+            } else if (price >= 500 && price <= 1000) {
+                var discount = ((10 / 100) * price);
+                document.getElementById('discount').innerHTML = "The 10% TotalDiscount Amount on " + totalUpma + " upma is ₹" + discount;
+                document.getElementById('payAmount').innerHTML = "The Final Total Amount on " + totalUpma + " after discount ₹" + (price - discount);
+            } else (
+                document.getElementById('inputData').innerHTML = "Select at least one Proper choice!!"
+            )
+        }
+        
+        function idliPrice() {
+            var totalIdli = Number(document.getElementById('howIdli').value);
+            var price = 43 * totalIdli;
+            document.getElementById('Amount').innerHTML = "The TotalCost of " + totalIdli + " idli is ₹" + price;
+
+            if (price >= 200 && price <= 300) {
+                var discount = ((5 / 100) * price);
+                document.getElementById('discount').innerHTML = "The 5% TotalDiscount Amount on " + totalIdli + " idli is ₹" + discount;
+                document.getElementById('payAmount').innerHTML = "The Final Total Amount on " + totalIdli + " after discount ₹" + (price - discount);
+            } else if (price >= 300 && price <= 500) {
+                var discount = ((7.5 / 100) * price);
+                document.getElementById('discount').innerHTML = "The 7.5% TotalDiscount Amount on " + totalIdli + " idli is ₹" + discount;
+                document.getElementById('payAmount').innerHTML = "The Final Total Amount on " + totalIdli + " after discount ₹" + (price - discount);
+            } else if (price >= 500 && price <= 1000) {
+                var discount = ((10 / 100) * price);
+                document.getElementById('discount').innerHTML = "The 10% TotalDiscount Amount on " + totalIdli + " idli is ₹" + discount;
+                document.getElementById('payAmount').innerHTML = "The Final Total Amount on " + totalIdli + " after discount ₹" + (price - discount);
+            } else (
+                document.getElementById('inputData').innerHTML = "Select at least one Proper choice!!"
+            )
+        }
+
+
+    </script>
+</body>
+
+</html>

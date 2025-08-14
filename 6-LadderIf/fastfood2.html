@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food</title>
+</head>
+
+<body>
+    <select id="SelectFood" onchange="selectFood()">
+        <option value="Select">Select Option</option>
+        <option value="1">1. Puri</option>
+        <option value="2">2. Dosha</option>
+        <option value="3">3. Upma</option>
+        <option value="4">4. Idli</option>
+    </select>
+
+    <div id="Fooditem"></div>
+    <h2 id="Amount"></h2>
+    <h2 id="discount"></h2>
+    <h2 id="payAmount"></h2>
+    <div id="inputData" style="color:red;"></div>
+
+    <script>
+        function selectFood() {
+            let Food = document.getElementById('SelectFood').value;
+            let dishes = {
+                "1": { name: "Puri", pricePerPlate: 60 },
+                "2": { name: "Dosha", pricePerPlate: 80 },
+                "3": { name: "Upma", pricePerPlate: 50 },
+                "4": { name: "Idli", pricePerPlate: 43 }
+            };
+
+            if (dishes[Food]) {
+                document.getElementById('Fooditem').innerHTML =
+                    `How Many Plates of ${dishes[Food].name} = 
+                    <input type='number' id='howMany'/> <br><br> 
+                    <input type='submit' value='Calculate Price' 
+                    onclick='calculatePrice("${dishes[Food].name}", ${dishes[Food].pricePerPlate})' />`;
+            } else {
+                document.getElementById('Fooditem').innerHTML = "Select at least one proper food!!";
+            }
+        }
+
+        function calculatePrice(dishName, pricePerPlate) {
+            let totalPlates = Number(document.getElementById('howMany').value);
+            let price = pricePerPlate * totalPlates;
+
+            document.getElementById('Amount').innerHTML =
+                `The Total Cost of ${totalPlates} ${dishName} is ₹${price}`;
+
+            let discountRate = 0;
+            if (price >= 200 && price <= 300) discountRate = 5;
+            else if (price > 300 && price <= 500) discountRate = 7.5;
+            else if (price > 500 && price <= 1000) discountRate = 10;
+            else {
+                document.getElementById('inputData').innerHTML = "No discount available for this amount.";
+                document.getElementById('discount').innerHTML = "";
+                document.getElementById('payAmount').innerHTML = "";
+                return;
+            }
+
+            let discount = (discountRate / 100) * price;
+            document.getElementById('discount').innerHTML =
+                `The ${discountRate}% Discount Amount on ${totalPlates} ${dishName} is ₹${discount}`;
+            document.getElementById('payAmount').innerHTML =
+                `The Final Amount after discount is ₹${price - discount}`;
+            document.getElementById('inputData').innerHTML = "";
+        }
+    </script>
+</body>
+
+</html>

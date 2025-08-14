@@ -1,0 +1,62 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Areas</title>
+</head>
+<body>
+    <select  id="choice" onchange="return getForArea()">
+        <option value="select">selectOption</option>
+        <option value="circleArea">1.circleArea</option>
+        <option value="rectArea">2.rectangleArea</option>
+        <option value="triangle">3.triangleArea</option>
+        <option value="squareArea">4.squareArea</option>
+    </select>
+    <div id="inputData"></div>
+    <h1 id="result"></h1>
+    
+    <script>
+        function getForArea(){
+            let choice =document.getElementById('choice').value;
+            if(choice==="circleArea"){
+                var cArea ="Enter the Radius:<input type='number' id='r'> <br><br> <input type='submit' value='circleArea' onclick='return cirArea()'/>"
+                document.getElementById('inputData').innerHTML = cArea;
+            }else if(choice==="rectArea"){
+                var rArea="Enter the length :<input type='number' id='l'> <br><br> Enter the breadth :<input type='number' id='br'> <br><br> <input type='submit' value='rectArea'  onclick='return recArea()'/>"
+                document.getElementById('inputData').innerHTML = rArea;
+            }else if(choice==="triangle"){
+                var tArea ="Enter the base :<input type='number' id='ba'> <br><br> Enter the height :<input type='number' id='h'> <br><br> <input type='submit' value='triArea' onclick='return triArea()'/>"
+                document.getElementById('inputData').innerHTML = tArea;
+            }else if(choice==="squareArea"){
+                var sArea="Enter the side :<input type='number' id='s'> <br><br> <input type='submit' value='squArea' onclick='return squArea()'/>"
+                document.getElementById('inputData').innerHTML = sArea;
+            }else{
+                document.getElementById('inputData').innerHTML = "Select at least one Proper choice!!";
+            }
+        }
+        function cirArea(){
+            var radius = Number(document.getElementById('r').value);
+            var forCircleArea = 3.14 * radius * radius;
+            document.getElementById('result').innerHTML = "Area of Circle is " + forCircleArea;
+        }
+         function recArea(){
+            var length = Number(document.getElementById('l').value);
+            var breadth = Number(document.getElementById('br').value);
+            var forRectangleArea = length * breadth;
+            document.getElementById('result').innerHTML = "Area of Rectangle is " + forRectangleArea;
+        }
+         function triArea(){
+            var base = Number(document.getElementById('ba').value);
+            var height = Number(document.getElementById('h').value);
+            var forTriangleArea = 0.5 * base * height;
+            document.getElementById('result').innerHTML = "Area of Triangle is " + forTriangleArea;
+        }
+         function squArea(){
+            var side = Number(document.getElementById('s').value);
+            var forSquareArea =  side * side;
+            document.getElementById('result').innerHTML = "Area of Square is " + forSquareArea;
+        }
+    </script>
+</body>
+</html>
