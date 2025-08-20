@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    Enter the I Value:<input type="number" id="iValue"><br>
+    Enter the J Value:<input type="number" id="jValue"><br>
+    Enter the K Value:<input type="number" id="kValue"><br>
+    <input type="submit" onclick="getValue()">
+    <div id="Result"></div>
+    <script>
+        function getValue(){
+                var i=Number(document.getElementById('iValue').value);
+        var j=Number(document.getElementById('jValue').value);
+        var k=Number(document.getElementById('kValue').value);
+        var result ="";
+        if()
+        while(i<=10&&j<=50&&k>=55){
+            i++;
+            j=j+5;
+            k=k-5;
+            result += "i = " + i + ", j = " + j + ", k = " + k + "<br>";
+        }
+         document.getElementById('Result').innerHTML = result;
+        }
+    
+    </script>
+</body>
+</html>

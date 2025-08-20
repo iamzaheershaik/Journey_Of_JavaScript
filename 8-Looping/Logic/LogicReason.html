@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Enter the Start Pointing<input type="number" id="start"><br><br>
+    Enter the ending Pointing<input type="number" id="end"><br><br>
+    Enter the gap difference <input type="number" id="gap"><br><br>
+    <input type="submit" onclick="return getGap()">
+
+    <div id="output"></div>
+    <script>
+        function getGap(){
+            var start = Number(document.getElementById('start').value);
+            var  end =  Number(document.getElementById('end').value);
+            var gap = Number(document.getElementById('gap').value);
+            var result = "";
+            if (gap <= 0) {
+                document.getElementById("output").innerHTML = "Gap must be greater than 0.";
+                return;
+            }
+            if (start <= end) {
+                while (start <= end) {
+                    result += start + " ";
+                    start += gap;
+                }
+            } else {
+                while (start >= end) {
+                    result += start + " ";
+                    start -= gap;
+                }
+            }
+            document.getElementById("output").innerHTML = result;
+            
+        }
+    </script>
+</body>
+</html>
