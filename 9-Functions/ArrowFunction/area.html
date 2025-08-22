@@ -1,0 +1,21 @@
+<div align="center" class="inputs">
+    Enter the Length <input type="number" id="len" ><br>
+    Enter the breadth <input type="number" id="bred"><br>
+    <input type="button" value="Area" onclick="getArea()">
+    <div id="area">
+
+    </div>
+</div>
+
+<script>
+    var getArea = (L, H)=>{
+        var length = Number(document.getElementById('len').value);
+        var breadth = Number(document.getElementById('bred').value);
+        var area =  length * breadth;
+        document.getElementById('area').innerHTML = 'The area of the rectangle = ' + area;
+    }
+    (()=>{
+
+    )}
+</script>
+

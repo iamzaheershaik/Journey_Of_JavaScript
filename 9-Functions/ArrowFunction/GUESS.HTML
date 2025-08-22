@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/STYLES/GUESS.CSS">
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <div class="header">
+                <div class="label">Best Score</div>
+                <div class="label">Number of Guesses</div>
+            </div>
+            
+            <h1>Guess the Number?</h1>
+            <p class="instructions">Enter a number between 1-100</p>
+            
+            <input type="number" id="guess" placeholder="Enter your guess">
+            
+            <p class="prompt">Try and guess it!</p>
+            
+            <div class="buttons">
+                <button id="guessBtn">Guess</button>
+                <button id="giveUpBtn">Give up!</button>
+                <button id="playAgainBtn">Play Again!</button>
+            </div>
+        </div>
+        
+        <div class="image-container">
+            <img src="/IMAGES/THINKING.png" alt="Thinking Character" id="thinkingImage">
+        </div>
+    </div>
+
+    <script src="/SCRIPT/GUESS.JS"></script>
+</body>
+</html>
+
+
+
