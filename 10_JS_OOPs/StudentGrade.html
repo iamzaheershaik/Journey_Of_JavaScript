@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudentGrade</title>
+  </head>
+  <body>
+    <script>
+      class student {
+        setStudent(name, age, subjects) {
+          this.name = name;
+          this.age = age;
+          this.subjects = subjects;
+        }
+
+        getTotal() {
+          let total = 0;
+          for (let subject in this.subjects) {
+            total = total + this.subjects[subject];
+          }
+          return total;
+        }
+
+        getAverage() {
+          let count = 0;
+          for (let subject in this.subjects) {
+            count++;
+          }
+          return this.getTotal() / count;
+        }
+
+        getGrade() {
+          let avg = this.getAverage();
+          if (avg >= 90) {
+            return "A+";
+          } else if (avg >= 80) {
+            return "A";
+          } else if (avg >= 70) {
+            return "B+";
+          } else if (avg >= 80) {
+            return "c";
+          } else if (avg >= 60) {
+            return "d";
+          } else {
+            return "Failed";
+          }
+        }
+        getReport() {
+          console.log(
+            `THE NAME OF STUDENT ${this.name} AND THE AGE ${this.age} OF THE STUDENT`
+          );
+          console.log("Students Marks");
+          console.log(`The Total marks of the Student ${this.getTotal()}`);
+          console.log(
+            `The Average of the Student ${this.getAverage().toFixed(2)}`
+          );
+          console.log(`The Grade of the Student ${this.getGrade()}`);
+        }
+      }
+
+      var s = new student();
+      s.setStudent("zaheer", 24, {
+        science: 70,
+        social: 80,
+        physics: 40,
+        biology: 60,
+      });
+
+      s.getReport();
+    </script>
+  </body>
+</html>
