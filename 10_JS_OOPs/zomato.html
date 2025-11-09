@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zomato</title>
+  </head>
+  <body>
+    <script>
+      class Company {
+        constructor(company, hq) {
+          this.company = company;
+          this.headQuarters = hq;
+        }
+        getCompany() {
+          return `The Name of the Company is ${this.company} and the headQuarters of Company Located in ${this.headQuarters}`;
+        }
+      }
+      class city extends Company {
+        constructor(company, hq, citi, location) {
+          super(company, hq);
+          this.city = citi;
+          this.location = location;
+        }
+        getCity() {
+          return `The Name of is ${this.city} and the location ${
+            this.location
+          } and Food Service you Ordered from is ${this.getCompany()}`;
+        }
+      }
+      class store extends city {
+        constructor(company, hq, citi, location, storeName, FoodItem) {
+          super(company, hq, citi, location);
+          this.storeName = storeName;
+          this.FoodItem = FoodItem;
+        }
+        getStore() {
+          return `The City :${this.getCity()} \n The Name of Store ${
+            this.storeName
+          } and the OrderItem ${this.FoodItem}`;
+        }
+      }
+      class Customer extends store {
+        constructor(
+          company,
+          hq,
+          citi,
+          location,
+          storeName,
+          FoodItem,
+          customerName,
+          costOfFood
+        ) {
+          super(company, hq, citi, location, storeName, FoodItem);
+          this.customerName = customerName;
+          this.costOfFood = costOfFood;
+        }
+        getCustomer() {
+          return `You ordered from Zomato. Name: ${this.customerName}, Food: ${
+            this.FoodItem
+          }, Total Cost: ${this.costOfFood}, Store Info: ${this.getStore()}`;
+        }
+      }
+      const s = new Customer(
+        "Zomato",
+        "Gurgaon",
+        "Hyderabad",
+        "Banjara Hills",
+        "Paradise Biryani",
+        "Chicken Biryani",
+        "Zaheer",
+        250
+      );
+      console.log(s.getCustomer());
+    </script>
+  </body>
+</html>
