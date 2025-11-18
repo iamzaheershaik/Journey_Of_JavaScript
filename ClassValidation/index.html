@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./dist/output.css">
+  <title>Admin Form</title>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <div class="w-full max-w-2xl bg-white shadow-md rounded-lg p-8 border-10 border-black">
+    <h2 class="text-xl font-semibold mb-6 border-b pb-3">Admin Fields</h2>
+    <form class="space-y-6 border-5 border-black" onsubmit="return validateForm(event)">
+      <!-- First & Last Name -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-medium mb-1">Enter First Name</label>
+          <input type="text" class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
+            placeholder="first name" id="fName" />
+          <span class="text-red-700" id="error_fname"></span>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-1">Enter Last Name</label>
+          <input type="text" class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
+            placeholder="last name" id="lName" />
+          <span class="text-red-700" id="error_lname"></span>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Enter Email</label>
+        <input type="text" class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter Email" id="JS_Email" />
+        <span class="text-red-500" id="JS_Email_Error"></span>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Enter Password</label>
+        <input type="password" class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter password" id="js_password" />
+        <span class="text-red-500" id="js_error_password"></span>
+      </div>
+
+      <!-- Gender -->
+      <div>
+        <label class="block text-sm font-medium mb-2">Select Gender</label>
+        <div class="flex items-center gap-6">
+          <label class="inline-flex items-center">
+            <input type="radio" name="gender" class="mr-2" value="Male" />
+            <span>Male</span>
+          </label>
+
+          <label class="inline-flex items-center">
+            <input type="radio" name="gender" class="mr-2" value="Female" />
+            <span>Female</span>
+          </label>
+        </div>
+        <span id="js_gender_error" class="text-red-500"></span>
+      </div>
+
+      <!-- Hobbies -->
+      <div>
+        <label class="block text-sm font-medium mb-2">Hobbies</label>
+
+        <div class="flex flex-col gap-2">
+          <label class="inline-flex items-center">
+            <input type="checkbox" class="mr-2" name="hobby[]" value="Reading" />
+            <span>Reading</span>
+          </label>
+
+          <label class="inline-flex items-center">
+            <input type="checkbox" class="mr-2" name="hobby[]" value="Cycling" />
+            <span>Cycling</span>
+          </label>
+
+          <label class="inline-flex items-center">
+            <input type="checkbox" class="mr-2" name="hobby[]" value="Music" />
+            <span>Music</span>
+          </label>
+        </div>
+        <span id="js_hobby_error" class="text-red-500"></span>
+      </div>
+
+      <!-- City -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Select City</label>
+        <select class="w-full border rounded-md px-3 py-2 bg-white focus:ring-2 focus:ring-blue-500" id="js_city">
+          <option value="">Select City</option>
+
+          <option>Agartala</option>
+          <option>Agra</option>
+          <option>Ahmedabad</option>
+          <option>Aizawl</option>
+          <option>Ajmer</option>
+          <option>Aligarh</option>
+          <option>Allahabad (Prayagraj)</option>
+          <option>Amritsar</option>
+          <option>Aurangabad</option>
+
+          <option>Bengaluru</option>
+          <option>Bhopal</option>
+          <option>Bhubaneswar</option>
+          <option>Bikaner</option>
+          <option>Bilaspur</option>
+
+          <option>Chandigarh</option>
+          <option>Chennai</option>
+          <option>Coimbatore</option>
+          <option>Cuttack</option>
+
+          <option>Daman</option>
+          <option>Dehradun</option>
+          <option>Delhi</option>
+          <option>Dhanbad</option>
+          <option>Diu</option>
+          <option>Durgapur</option>
+
+          <option>Ernakulam</option>
+
+          <option>Faridabad</option>
+          <option>Firozabad</option>
+
+          <option>Gandhinagar</option>
+          <option>Gaya</option>
+          <option>Ghaziabad</option>
+          <option>Gorakhpur</option>
+          <option>Guntur</option>
+          <option>Guwahati</option>
+
+          <option>Hyderabad</option>
+          <option>Haldwani</option>
+          <option>Hubli</option>
+
+          <option>Imphal</option>
+          <option>Indore</option>
+          <option>Itanagar</option>
+
+          <option>Jaipur</option>
+          <option>Jalandhar</option>
+          <option>Jammu</option>
+          <option>Jamshedpur</option>
+          <option>Jodhpur</option>
+          <option>Jabalpur</option>
+
+          <option>Kanpur</option>
+          <option>Kochi</option>
+          <option>Kohima</option>
+          <option>Kolhapur</option>
+          <option>Kolkata</option>
+          <option>Kozhikode</option>
+
+          <option>Lucknow</option>
+          <option>Ludhiana</option>
+
+          <option>Madurai</option>
+          <option>Mangaluru</option>
+          <option>Meerut</option>
+          <option>Mumbai</option>
+          <option>Mysuru</option>
+
+          <option>Nagpur</option>
+          <option>Nanded</option>
+          <option>Nashik</option>
+          <option>Noida</option>
+
+          <option>Ongole</option>
+
+          <option>Patna</option>
+          <option>Puducherry</option>
+          <option>Prayagraj (Allahabad)</option>
+          <option>Pune</option>
+
+          <option>Raipur</option>
+          <option>Rajkot</option>
+          <option>Ranchi</option>
+          <option>Rourkela</option>
+
+          <option>Shillong</option>
+          <option>Shimla</option>
+          <option>Siliguri</option>
+          <option>Srinagar</option>
+          <option>Surat</option>
+
+          <option>Thane</option>
+          <option>Thiruvananthapuram</option>
+          <option>Thrissur</option>
+          <option>Tiruchirappalli</option>
+          <option>Tirupati</option>
+
+          <option>Udaipur</option>
+          <option>Ujjain</option>
+
+          <option>Varanasi</option>
+          <option>Vijayawada</option>
+          <option>Visakhapatnam</option>
+
+          <option>Warangal</option>
+
+          <option>Yamunanagar</option>
+
+        </select>
+        <span id="js_city_error" class="text-red-500"></span>
+      </div>
+
+      <!-- File Upload -->
+      <div>
+        <label class="block text-sm font-medium mb-1">File upload</label>
+        <input type="file" class="w-full border rounded-md p-2 bg-white" />
+      </div>
+
+      <!-- Submit -->
+      <button class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700">
+        Save
+      </button>
+    </form>
+  </div>
+  <script>
+    function validateForm(event) {
+      event.preventDefault();
+      var fname = document.getElementById("fName").value;
+      var lname = document.getElementById("lName").value;
+      var email = document.getElementById("JS_Email").value;
+      var mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var password = document.getElementById("js_password").value;
+      var passFormat = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+      // Get selected gender
+      var genderOptions = document.querySelectorAll("input[name='gender']");
+      var gender;
+      for (var i = 0; i < genderOptions.length; i++) {
+        if (genderOptions[i].checked) {
+          gender = genderOptions[i].value;
+        }
+      }
+
+      // Get selected hobbies
+      var hobbyOptions = document.querySelectorAll("input[name='hobby[]']");
+      var hobby;
+      for (var i = 0; i < hobbyOptions.length; i++) {
+        if (hobbyOptions[i].checked) {
+          hobby = hobbyOptions[i].value;
+          break;
+        }
+      }
+      var city = document.getElementById('js_city')
+      // First Name validation
+      if (fname == "") {
+        document.getElementById("error_fname").innerHTML =
+          "Enter the FirstName";
+        return false;
+      } else {
+        document.getElementById("error_fname").innerHTML = "";
+      }
+
+      // Last Name validation
+      if (lname == "") {
+        document.getElementById("error_lname").innerHTML =
+          "Enter the LastName";
+        return false;
+      } else {
+        document.getElementById("error_lname").innerHTML = "";
+      }
+
+      // Email validation
+      if (email == "") {
+        document.getElementById("JS_Email_Error").innerHTML =
+          "Enter the Email";
+        return false;
+      } else if (!email.match(mailFormat)) {
+        document.getElementById("JS_Email_Error").innerHTML =
+          "Enter the Valid Email Format";
+        return false;
+      } else {
+        document.getElementById("JS_Email_Error").innerHTML = "";
+      }
+
+      // Password validation
+      if (password == "") {
+        document.getElementById("js_error_password").innerHTML =
+          "Enter the Password";
+        return false;
+      } else if (!password.match(passFormat)) {
+        document.getElementById("js_error_password").innerHTML =
+          "Enter the Valid Password";
+        return false;
+      } else {
+        document.getElementById("js_error_password").innerHTML = "";
+      }
+
+      // Gender validation
+      if (gender == undefined) {
+        document.getElementById("js_gender_error").innerHTML =
+          "Please Select Gender";
+        return false;
+      } else {
+        document.getElementById("js_gender_error").innerHTML = "";
+      }
+
+      // Hobby validation
+      if (hobby == undefined) {
+        document.getElementById("js_hobby_error").innerHTML =
+          "Please Select Hobby";
+        return false;
+      } else {
+        document.getElementById("js_hobby_error").innerHTML = "";
+      }
+      // city validation
+      if (city == "") {
+        document.getElementById("js_city_error").innerHTML =
+          "Please Select city";
+        return false;
+      } else {
+        document.getElementById("js_city_error").innerHTML = "";
+      }
+    }
+
+
+  </script>
+</body>
+
+</html> 

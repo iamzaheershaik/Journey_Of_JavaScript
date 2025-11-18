@@ -1,0 +1,72 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./CalculatorForTip/tip.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div align="center">
+      <h2>Tip Calculater</h2>
+      <table border="1" id="table">
+        <tr>
+          <td>
+            <label>Bill Amount</label><br />
+            <input type="number" id="Amount" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Tip Percentage</label><br />
+            <input type="number" id="Percentage" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>No of People</label><br />
+            <input type="number" id="People" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              type="button"
+              value="calculate"
+              onclick="return tipCalculate()"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>tip per person</td>
+          <td><input type="number" id="tipPerPerson" /></td>
+        </tr>
+        <tr>
+          <td>total per person</td>
+          <td><input type="number" id="totalPerPerson" /></td>
+        </tr>
+        <tr>
+          <td>total Bill</td>
+          <td><input type="number" id="totalBill" /></td>
+        </tr>
+      </table>
+    </div>
+    <script>
+      function tipCalculate() {
+        var billAmount = Number(document.getElementById("Amount").value);
+        var tipPercentage = Number(document.getElementById("Percentage").value);
+        var noOfPeople = Number(document.getElementById("People").value);
+
+        var tipPerPerson = billAmount * (tipPercentage / 100);
+        var totalPercentage = tipPerPerson / noOfPeople;
+        document.getElementById("tipPerPerson").value = totalPercentage;
+
+        var bill = totalPercentage * noOfPeople;
+        var totalBill = bill + billAmount;
+        document.getElementById("totalBill").value = totalBill;
+
+        var AmountPerPerson = totalBill / noOfPeople;
+        document.getElementById("totalPerPerson").value = AmountPerPerson;
+      }
+    </script>
+  </body>
+</html>

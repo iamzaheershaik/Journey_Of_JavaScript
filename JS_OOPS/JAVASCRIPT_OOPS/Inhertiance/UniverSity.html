@@ -1,0 +1,31 @@
+<script>
+   class University{
+        constructor(uni,lo){
+            this.university = uni;
+            this.location = lo
+       }
+       getUniversity(){
+        return `University ${this.university} located in ${this.location}`;
+       }
+   }
+
+   class college extends University{
+        constructor(uni, lo , college, course){
+            super(uni, lo);
+            this.college = college;
+            this.course = course
+        }
+
+        getCollege(){
+            console.log(`My College ${this.college} which i am studying the course ${this.course} which is Authorized under the ${this.getUniversity()}`)
+        }
+   }
+
+   class student extends college{
+        
+   }
+var b = new college("JNTUA", "Ananthapur", "SVR", "Mechanical" )
+b.getCollege();
+
+
+</script>
