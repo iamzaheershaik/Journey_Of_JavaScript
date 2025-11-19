@@ -1,37 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
-    <link rel="stylesheet" href="./dist/output.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <link rel="stylesheet" href="./dist/output.css" />
     <title>ShoeWebsite</title>
-</head>
+  </head>
 
-<body class="bg-black text-white">
-    <header class="px-12 flex items-center justify-between">
-        <div> 
-            <a href="#"></a>
-            <img  class="w-32" src="./ImageAssets/Shoe_Logo.png" alt="logo">
-            <p class="text-sm -mt-8 font-semibold" >The Shoe Company</p>
-        </div>
-        <nav class=" hidden md:block space-x-6  lg:space-x-8 lg:text-2xl">
-
-            <a  class="font-bold"href="#">Home</a>
-            <a  class="font-bold"href="#how-it-works ??">How it Works</a>
-            <a  class="font-bold"href="#About">About</a>
-            <a  class="font-bold"href="#Testimonals">Testimonials</a>
-            <a  class="font-bold"href="#Contact-us">Contact-US</a>
-
-        </nav>
-        <button class="text-5xl md:hidden">☰</button>
+  <body class="bg-black text-white">
+    <header
+      class="px-4 md:px-12 flex items-center justify-between fixed w-full max-w-[1440px] left-[50%] -translate-x-[50%]"
+    >
+      <div>
+        <a href="#"></a>
+        <img
+          class="w-24 md:w-32"
+          src="./public/ImageAssets/Shoe_Logo.png"
+          alt="logo"
+        />
+        <p class="text-xs -mt-6 md:text-sm md:-mt-8 font-semibold">
+          The Shoe Company
+        </p>
+      </div>
+      <nav class="hidden md:block space-x-6 lg:space-x-8 lg:text-2xl">
+        <a class="font-bold" href="#hero">Home</a>
+        <a class="font-bold" href="#how-it-works ??">How it Works</a>
+        <a class="font-bold" href="#About">About</a>
+        <a class="font-bold" href="#Testimonals">Testimonials</a>
+        <a class="font-bold" href="#Contact-us">Contact-US</a>
+      </nav>
+      <button id="menuBtn" class="text-5xl md:hidden">☰</button>
     </header>
-    <section id="Hero_section">
-        <h1>THE 
-            SHOE
-            COMPANY </h1>
+
+    <nav
+      id="mobileMenu"
+      class="hidden flex-col space-y-6 text-xl bg-black text-white px-6 py-8 fixed top-20 left-0 w-full md:hidden z-40"
+    >
+      <a class="font-bold" href="#hero">Home</a>
+      <a class="font-bold" href="#how-it-works">How it Works</a>
+      <a class="font-bold" href="#About">About</a>
+      <a class="font-bold" href="#Testimonals">Testimonials</a>
+      <a class="font-bold" href="#Contact-us">Contact-US</a>
+    </nav>
+
+    <section
+      id="hero"
+      class="bg-[url('/public/ImageAssets/background-road-share.png')] bg-cover md:bg-contain bg-no-repeat bg-right pt-36 px-6 md:px-12 max-w-[1440px] mx-auto"
+    >
+      <div
+        class="flex flex-col md:flex-row md:items-center justify-between max-w-6xl mx-auto"
+      >
+        <h1
+          class="text-4xl md:text-6xl font-bold leading-[40px] md:leading-[72px]"
+        >
+          THE <br />
+          SHOE <br />
+          COMPANY
+        </h1>
+        <div>
+          <img
+            class="w-[600px]"
+            src="./public/ImageAssets/shoeHero.png"
+            alt="shoeHero-image"
+          />
+        </div>
+      </div>
     </section>
+    <script>
+      const btn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
 
-</body>
-
+      btn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    </script>
+  </body>
 </html>
