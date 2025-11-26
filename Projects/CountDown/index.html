@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Year Countdown</title>
+  <link rel="stylesheet" href="countdown.css" />
+<body>
+  <div class="container">
+    <h1>Countdown to New Year</h1>
+
+    <div class="timer">
+      <div class="box">
+        <div class="value" id="days">00</div>
+        <div class="label">Days</div>
+      </div>
+
+      <div class="box">
+        <div class="value" id="hours">00</div>
+        <div class="label">Hours</div>
+      </div>
+
+      <div class="box">
+        <div class="value" id="minutes">00</div>
+        <div class="label">Minutes</div>
+      </div>
+
+      <div class="box">
+        <div class="value" id="seconds">00</div>
+        <div class="label">Seconds</div>
+      </div>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+  <script>
+    function updateCountdown() {
+      const now = new Date();
+      const nextYear = now.getFullYear() + 1;
+      const newYearDate = new Date(`Jan 1, ${nextYear} 00:00:00`);
+
+      const totalTime = newYearDate - new Date(`Jan 1, ${now.getFullYear()} 00:00:00`);
+      const timeLeft = newYearDate - now;
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+      const seconds = Math.floor((timeLeft / 1000) % 60);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+      document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+      document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
+
+      const progress = ((totalTime - timeLeft) / totalTime) * 100;
+      document.getElementById("progressBar").style.width = progress + "%";
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+  </body>
+</html>
