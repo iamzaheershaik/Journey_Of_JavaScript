@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Final Student Manager - Improved</title>
+
+    <style>
+      /* SAME STYLES — untouched (no need to rewrite) */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        background: #f9f9f9;
+      }
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+      .input-container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+      .form-row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+      input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        flex: 1;
+        font-size: 16px;
+      }
+      button {
+        padding: 10px 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        transition: opacity 0.2s;
+      }
+      button:hover {
+        opacity: 0.9;
+      }
+      .btn-add {
+        background: #28a745;
+      }
+      .btn-update {
+        background: #007bff;
+        display: none;
+      }
+      .btn-reset {
+        background: #6c757d;
+      }
+      .btn-bulk-delete {
+        background: #c82333;
+        width: 100%;
+        margin-top: 10px;
+      }
+      .btn-edit {
+        background: #ffc107;
+        color: #333;
+        padding: 5px 10px;
+        font-size: 12px;
+      }
+      .btn-delete {
+        background: #dc3545;
+        padding: 5px 10px;
+        font-size: 12px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      th,
+      td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background: #343a40;
+        color: white;
+      }
+      tr:hover {
+        background: #f1f1f1;
+      }
+      tr.editing-row {
+        background: #fff3cd;
+        border-left: 5px solid #ffc107;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Student Management System</h2>
+
+    <div class="input-container">
+      <div class="form-row">
+        <input type="number" id="studentId" placeholder="Student ID" required />
+        <input type="text" id="studentName" placeholder="Full Name" required />
+        <input type="number" id="studentAge" placeholder="Age" required />
+      </div>
+
+      <div class="form-row">
+        <button class="btn-add" id="btnAdd">Add Student</button>
+        <button class="btn-update" id="btnUpdate">Update Student</button>
+        <button class="btn-reset" id="btnReset">Reset</button>
+      </div>
+    </div>
+
+    <button class="btn-bulk-delete" id="btnBulkDelete">
+      Delete Selected Rows
+    </button>
+    <br /><br />
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 40px; text-align: center">
+            <input type="checkbox" id="selectAll" />
+          </th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th style="width: 150px">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="studentTableBody"></tbody>
+    </table>
+
+    <script>
+      /* ========== CONSTANTS & STATE ========== */
+      const STORAGE_KEY = "studentData";
+      let currentEditId = null;
+
+      /* ========== INITIALIZE ========== */
+      function init() {
+        try {
+          let data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+          if (!data) {
+            const defaults = [
+              { id: 101, name: "Alice Johnson", age: 20 },
+              { id: 102, name: "Bob Smith", age: 22 },
+            ];
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(defaults));
+          }
+        } catch {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
+        }
+        renderTable();
+      }
+
+      /* SAFE GET FUNCTION */
+      function getStudents() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        } catch {
+          return [];
+        }
+      }
+
+      /* ========== RENDER TABLE SAFELY (NO innerHTML) ========== */
+      function renderTable() {
+        const students = getStudents();
+        const tbody = document.getElementById("studentTableBody");
+        tbody.innerHTML = "";
+        document.getElementById("selectAll").checked = false;
+
+        students.forEach((s) => {
+          const tr = document.createElement("tr");
+          if (s.id === currentEditId) tr.classList.add("editing-row");
+
+          /* Checkbox Cell */
+          const tdCheck = document.createElement("td");
+          tdCheck.style.textAlign = "center";
+          const cb = document.createElement("input");
+          cb.type = "checkbox";
+          cb.className = "row-checkbox";
+          cb.value = s.id;
+          tdCheck.appendChild(cb);
+
+          /* ID, Name, Age */
+          const tdId = document.createElement("td");
+          tdId.textContent = s.id;
+
+          const tdName = document.createElement("td");
+          tdName.textContent = s.name;
+
+          const tdAge = document.createElement("td");
+          tdAge.textContent = s.age;
+
+          /* Action Buttons */
+          const tdAct = document.createElement("td");
+
+          const btnEdit = document.createElement("button");
+          btnEdit.textContent = "Edit";
+          btnEdit.className = "btn-edit";
+          btnEdit.onclick = () => editStudent(s.id);
+
+          const btnDel = document.createElement("button");
+          btnDel.textContent = "Delete";
+          btnDel.className = "btn-delete";
+          btnDel.onclick = () => deleteOne(s.id);
+
+          tdAct.append(btnEdit, btnDel);
+
+          tr.append(tdCheck, tdId, tdName, tdAge, tdAct);
+          tbody.appendChild(tr);
+        });
+
+        attachCheckboxListeners();
+      }
+
+      /* UPDATE SELECT-ALL WHEN INDIVIDUAL BOXES CHANGE */
+      function attachCheckboxListeners() {
+        const allBoxes = document.querySelectorAll(".row-checkbox");
+        const selectAll = document.getElementById("selectAll");
+
+        allBoxes.forEach((cb) => {
+          cb.addEventListener("change", () => {
+            const checked = document.querySelectorAll(
+              ".row-checkbox:checked"
+            ).length;
+            selectAll.checked = checked === allBoxes.length && checked > 0;
+          });
+        });
+      }
+
+      /* ========== ADD STUDENT ========== */
+      function addStudent() {
+        let id = Number(document.getElementById("studentId").value);
+        let name = document.getElementById("studentName").value.trim();
+        let age = Number(document.getElementById("studentAge").value);
+
+        if (!id || !name || !age) return alert("Fill all fields");
+        if (age <= 0 || age > 120) return alert("Invalid age");
+
+        const students = getStudents();
+        if (students.some((s) => s.id === id)) return alert("ID exists!");
+
+        students.push({ id, name, age });
+        save(students);
+        resetForm();
+      }
+
+      /* ========== EDIT STUDENT ========== */
+      function editStudent(id) {
+        const students = getStudents();
+        const found = students.find((s) => s.id === id);
+
+        if (!found) return;
+
+        document.getElementById("studentId").value = found.id;
+        document.getElementById("studentName").value = found.name;
+        document.getElementById("studentAge").value = found.age;
+
+        document.getElementById("studentId").disabled = true;
+
+        document.getElementById("btnAdd").style.display = "none";
+        document.getElementById("btnUpdate").style.display = "block";
+
+        currentEditId = id;
+        renderTable();
+      }
+
+      /* ========== UPDATE STUDENT ========== */
+      function updateStudent() {
+        let name = document.getElementById("studentName").value.trim();
+        let age = Number(document.getElementById("studentAge").value);
+
+        const students = getStudents();
+        const index = students.findIndex((s) => s.id === currentEditId);
+
+        if (index === -1) return;
+
+        students[index].name = name;
+        students[index].age = age;
+
+        save(students);
+        resetForm();
+      }
+
+      /* ========== DELETE ONE ========== */
+      function deleteOne(id) {
+        if (!confirm("Delete this student?")) return;
+        performDelete([id]);
+      }
+
+      /* ========== BULK DELETE ========== */
+      function deleteSelected() {
+        const checked = [...document.querySelectorAll(".row-checkbox:checked")];
+        if (checked.length === 0) return alert("No students selected");
+
+        if (!confirm(`Delete ${checked.length} students?`)) return;
+
+        const ids = checked.map((cb) => Number(cb.value));
+        performDelete(ids);
+      }
+
+      /* HELPER DELETE */
+      function performDelete(ids) {
+        let students = getStudents().filter((s) => !ids.includes(s.id));
+        save(students);
+
+        if (ids.includes(currentEditId)) resetForm();
+      }
+
+      /* SAVE */
+      function save(data) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        renderTable();
+      }
+
+      /* RESET FORM */
+      function resetForm() {
+        document.getElementById("studentId").value = "";
+        document.getElementById("studentName").value = "";
+        document.getElementById("studentAge").value = "";
+
+        document.getElementById("studentId").disabled = false;
+
+        document.getElementById("btnAdd").style.display = "block";
+        document.getElementById("btnUpdate").style.display = "none";
+
+        currentEditId = null;
+        renderTable();
+      }
+
+      /* SELECT ALL */
+      document.getElementById("selectAll").addEventListener("change", (e) => {
+        const state = e.target.checked;
+        document
+          .querySelectorAll(".row-checkbox")
+          .forEach((cb) => (cb.checked = state));
+      });
+
+      /* BUTTON EVENTS */
+      document.getElementById("btnAdd").addEventListener("click", addStudent);
+      document
+        .getElementById("btnUpdate")
+        .addEventListener("click", updateStudent);
+      document.getElementById("btnReset").addEventListener("click", resetForm);
+      document
+        .getElementById("btnBulkDelete")
+        .addEventListener("click", deleteSelected);
+
+      /* START APP */
+      init();
+    </script>
+  </body>
+</html>
