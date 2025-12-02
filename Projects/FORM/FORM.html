@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Data Form</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 20px;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #555;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="url"],
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+
+      input[type="text"]:focus,
+      input[type="number"]:focus,
+      input[type="url"]:focus,
+      select:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      .radio-group,
+      .checkbox-group {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .radio-group label,
+      .checkbox-group label {
+        display: flex;
+        align-items: center;
+        font-weight: normal;
+        cursor: pointer;
+      }
+
+      .radio-group input,
+      .checkbox-group input {
+        margin-right: 5px;
+        cursor: pointer;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background: #667eea;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      button:hover {
+        background: #5568d3;
+      }
+
+      button:active {
+        transform: scale(0.98);
+      }
+
+      .table-container {
+        margin-top: 40px;
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th {
+        background: #667eea;
+        color: white;
+        padding: 12px;
+        text-align: left;
+        font-weight: bold;
+      }
+
+      td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      tr:hover {
+        background: #f5f5f5;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .edit-btn,
+      .delete-btn {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .edit-btn {
+        background: #28a745;
+        color: white;
+      }
+
+      .delete-btn {
+        background: #dc3545;
+        color: white;
+      }
+
+      .edit-btn:hover {
+        background: #218838;
+      }
+
+      .delete-btn:hover {
+        background: #c82333;
+      }
+
+      .user-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>User Registration Form</h1>
+
+      <form id="userForm">
+        <!-- Hidden ID Input -->
+        <input type="hidden" id="userId" />
+
+        <!-- Name Input -->
+        <div class="form-group">
+          <label for="name">Name *</label>
+          <input type="text" id="name" required />
+        </div>
+
+        <!-- Age Input -->
+        <div class="form-group">
+          <label for="age">Age *</label>
+          <input type="number" id="age" min="1" max="120" required />
+        </div>
+
+        <!-- Gender Radio -->
+        <div class="form-group">
+          <label>Gender *</label>
+          <div class="radio-group">
+            <label>
+              <input type="radio" name="gender" value="Male" required /> Male
+            </label>
+            <label>
+              <input type="radio" name="gender" value="Female" /> Female
+            </label>
+            <label>
+              <input type="radio" name="gender" value="Other" /> Other
+            </label>
+          </div>
+        </div>
+
+        <!-- City Dropdown -->
+        <div class="form-group">
+          <label for="city">City *</label>
+          <select id="city" required>
+            <option value="">-- Select City --</option>
+            <option value="New York">New York</option>
+            <option value="Los Angeles">Los Angeles</option>
+            <option value="Chicago">Chicago</option>
+            <option value="Houston">Houston</option>
+            <option value="Phoenix">Phoenix</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Bangalore">Bangalore</option>
+          </select>
+        </div>
+
+        <!-- Hobbies Checkboxes -->
+        <div class="form-group">
+          <label>Hobbies</label>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" name="hobbies" value="Reading" /> Reading
+            </label>
+            <label>
+              <input type="checkbox" name="hobbies" value="Gaming" /> Gaming
+            </label>
+            <label>
+              <input type="checkbox" name="hobbies" value="Sports" /> Sports
+            </label>
+            <label>
+              <input type="checkbox" name="hobbies" value="Cooking" /> Cooking
+            </label>
+            <label>
+              <input type="checkbox" name="hobbies" value="Traveling" />
+              Traveling
+            </label>
+          </div>
+        </div>
+
+        <!-- Image URL Input -->
+        <div class="form-group">
+          <label for="imageUrl">Profile Image URL</label>
+          <input
+            type="url"
+            id="imageUrl"
+            placeholder="https://example.com/image.jpg"
+          />
+        </div>
+
+        <!-- Submit/Update Button -->
+        <button type="submit" id="submitBtn">Submit</button>
+      </form>
+
+      <!-- Table to Display Data -->
+      <div class="table-container">
+        <h2>Registered Users</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>City</th>
+              <th>Hobbies</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="dataTable">
+            <!-- Data rows will be inserted here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      // ==============================================================
+      // STEP 1: DEFINE THE STORAGE KEY
+      // ==============================================================
+      // This is like giving a NAME to our storage box in localStorage
+      // localStorage is like a permanent notebook in your browser
+      const STORAGE_KEY = "userData";
+
+      // ==============================================================
+      // STEP 2: TRACK EDITING MODE
+      // ==============================================================
+      // When editing, this will store the INDEX number of the user we're editing
+      // null = we're NOT editing, we're adding new user
+      let editingIndex = null;
+
+      // ==============================================================
+      // STEP 3: GET FORM ELEMENTS
+      // ==============================================================
+      // Grab references to HTML elements so we can use them easily
+      const form = document.getElementById("userForm");
+      const submitBtn = document.getElementById("submitBtn");
+      const dataTable = document.getElementById("dataTable");
+
+      // ==============================================================
+      // STEP 4: LOAD DATA FROM LOCALSTORAGE WHEN PAGE LOADS
+      // ==============================================================
+      // This function READS data from localStorage
+      function loadFromLocalStorage() {
+        // Try to get data from localStorage using our key
+        const storedData = localStorage.getItem(STORAGE_KEY);
+
+        // If there's data, convert it from JSON text back to JavaScript array
+        // If no data exists, return empty array
+        if (storedData) {
+          return JSON.parse(storedData); // Convert JSON text → JavaScript array
+        } else {
+          return []; // Return empty array if nothing stored
+        }
+      }
+
+      // ==============================================================
+      // STEP 5: SAVE DATA TO LOCALSTORAGE
+      // ==============================================================
+      // This function WRITES data to localStorage
+      function saveToLocalStorage(data) {
+        // Convert JavaScript array → JSON text
+        const jsonString = JSON.stringify(data);
+
+        // Store it in localStorage with our key
+        localStorage.setItem(STORAGE_KEY, jsonString);
+      }
+
+      // ==============================================================
+      // STEP 6: HANDLE FORM SUBMISSION
+      // ==============================================================
+      form.addEventListener("submit", function (e) {
+        // Prevent page refresh
+        e.preventDefault();
+
+        // Collect all checked hobbies into an array
+        const hobbies = [];
+        document
+          .querySelectorAll('input[name="hobbies"]:checked')
+          .forEach((checkbox) => {
+            hobbies.push(checkbox.value);
+          });
+
+        // Get ID from hidden field (will be empty for new users)
+        const userId = document.getElementById("userId").value;
+
+        // Create user object with all form data
+        const user = {
+          id: userId || Date.now().toString(), // If no ID, generate new one using timestamp
+          name: document.getElementById("name").value,
+          age: document.getElementById("age").value,
+          gender: document.querySelector('input[name="gender"]:checked').value,
+          city: document.getElementById("city").value,
+          hobbies: hobbies.join(", "), // Convert array to comma-separated text
+          imageUrl:
+            document.getElementById("imageUrl").value ||
+            "https://via.placeholder.com/50",
+        };
+
+        // Load current data from localStorage
+        let userData = loadFromLocalStorage();
+
+        // Check if we're EDITING or ADDING NEW
+        if (editingIndex !== null) {
+          // EDITING: Replace the old user data at this index
+          // Keep the original ID (don't change it)
+          user.id = userData[editingIndex].id;
+          userData[editingIndex] = user;
+          editingIndex = null; // Turn off editing mode
+          submitBtn.textContent = "Submit"; // Change button text back
+        } else {
+          // ADDING NEW: Add to end of array
+          userData.push(user);
+        }
+
+        // Save updated array back to localStorage
+        saveToLocalStorage(userData);
+
+        // Clear form fields (including hidden ID)
+        form.reset();
+
+        // Refresh the table display
+        renderTable();
+      });
+
+      // ==============================================================
+      // STEP 7: DISPLAY DATA IN TABLE
+      // ==============================================================
+      function renderTable() {
+        // Load data from localStorage
+        const userData = loadFromLocalStorage();
+
+        // Clear existing table rows
+        dataTable.innerHTML = "";
+
+        // Loop through each user and create table row
+        userData.forEach((user, index) => {
+          const row = document.createElement("tr");
+
+          // Build the HTML for this row
+          row.innerHTML = `
+          <td><img src="${
+            user.imageUrl
+          }" alt="Profile" class="user-image" onerror="this.src='https://via.placeholder.com/50'"></td>
+          <td>${user.name}</td>
+          <td>${user.age}</td>
+          <td>${user.gender}</td>
+          <td>${user.city}</td>
+          <td>${user.hobbies || "None"}</td>
+          <td>
+            <div class="action-buttons">
+              <button class="edit-btn" onclick="editUser(${index})">Edit</button>
+              <button class="delete-btn" onclick="deleteUser(${index})">Delete</button>
+            </div>
+          </td>
+        `;
+
+          // Add row to table
+          dataTable.appendChild(row);
+        });
+      }
+
+      // ==============================================================
+      // STEP 8: EDIT USER
+      // ==============================================================
+      function editUser(index) {
+        // Load data from localStorage
+        const userData = loadFromLocalStorage();
+        const user = userData[index];
+
+        // Fill hidden ID field with user's ID
+        document.getElementById("userId").value = user.id;
+
+        // Fill form with user's current data
+        document.getElementById("name").value = user.name;
+        document.getElementById("age").value = user.age;
+        document.querySelector(
+          `input[name="gender"][value="${user.gender}"]`
+        ).checked = true;
+        document.getElementById("city").value = user.city;
+        document.getElementById("imageUrl").value = user.imageUrl;
+
+        // Check the hobbies checkboxes
+        const userHobbies = user.hobbies ? user.hobbies.split(", ") : [];
+        document
+          .querySelectorAll('input[name="hobbies"]')
+          .forEach((checkbox) => {
+            checkbox.checked = userHobbies.includes(checkbox.value);
+          });
+
+        // Turn on editing mode
+        editingIndex = index;
+        submitBtn.textContent = "Update";
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // ==============================================================
+      // STEP 9: DELETE USER
+      // ==============================================================
+      function deleteUser(index) {
+        if (confirm("Are you sure you want to delete this user?")) {
+          // Load data from localStorage
+          let userData = loadFromLocalStorage();
+
+          // Remove user at this index
+          userData.splice(index, 1);
+
+          // Save updated array back to localStorage
+          saveToLocalStorage(userData);
+
+          // Refresh table
+          renderTable();
+        }
+      }
+
+      // ==============================================================
+      // STEP 10: INITIALIZE - RUN WHEN PAGE LOADS
+      // ==============================================================
+      // Display any existing data when page first loads
+      renderTable();
+    </script>
+  </body>
+</html>
