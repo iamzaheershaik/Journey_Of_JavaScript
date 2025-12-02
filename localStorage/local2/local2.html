@@ -1,0 +1,202 @@
+<!-- save-as lms-localstorage.html and open in a browser -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tiny LMS (localStorage)</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 18px;
+        max-width: 800px;
+        margin: auto;
+      }
+      input,
+      button {
+        padding: 8px;
+        margin: 4px 0;
+      }
+      .course {
+        border: 1px solid #ddd;
+        padding: 8px;
+        margin: 6px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .controls {
+        display: flex;
+        gap: 8px;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tiny LMS — manage courses</h1>
+
+    <!-- FORM: add / update -->
+    <div>
+      <input id="title" placeholder="Course title" />
+      <input id="mentor" placeholder="Mentor name" />
+      <button id="saveBtn">Add Course</button>
+      <button id="cancelBtn" class="hidden">Cancel Edit</button>
+    </div>
+
+    <h2>Courses</h2>
+    <div id="coursesList"></div>
+
+    <script>
+      /***********************
+       * 1. Helper functions
+       ***********************/
+      function loadCourses() {
+        // read 'courses' from localStorage
+        const raw = localStorage.getItem("courses");
+        // if nothing stored, return empty array
+        return raw ? JSON.parse(raw) : [];
+      }
+
+      function saveCourses(courses) {
+        // localStorage stores strings only — stringify before saving
+        localStorage.setItem("courses", JSON.stringify(courses));
+      }
+
+      /***********************
+       * 2. CRUD operations
+       ***********************/
+      function createCourse(title, mentor) {
+        const courses = loadCourses();
+        const newCourse = {
+          id: Date.now(),
+          title: title.trim(),
+          mentor: mentor.trim(),
+        };
+        // basic validation
+        if (!newCourse.title) return alert("Title required");
+        courses.push(newCourse);
+        saveCourses(courses);
+        renderCourses();
+      }
+
+      function getCourses() {
+        return loadCourses();
+      }
+
+      function updateCourse(id, newTitle, newMentor) {
+        const courses = loadCourses();
+        const updated = courses.map((c) =>
+          c.id === id
+            ? { ...c, title: newTitle.trim(), mentor: newMentor.trim() }
+            : c
+        );
+        saveCourses(updated);
+        renderCourses();
+      }
+
+      function deleteCourse(id) {
+        const courses = loadCourses();
+        const filtered = courses.filter((c) => c.id !== id);
+        saveCourses(filtered);
+        renderCourses();
+      }
+
+      /***********************
+       * 3. DOM + UI wiring
+       ***********************/
+      const titleInput = document.getElementById("title");
+      const mentorInput = document.getElementById("mentor");
+      const saveBtn = document.getElementById("saveBtn");
+      const cancelBtn = document.getElementById("cancelBtn");
+      const listDiv = document.getElementById("coursesList");
+
+      // track editing state
+      let editingId = null;
+
+      // when user clicks Save (create or update)
+      saveBtn.addEventListener("click", () => {
+        const title = titleInput.value;
+        const mentor = mentorInput.value;
+        if (editingId) {
+          updateCourse(editingId, title, mentor);
+          // reset UI
+          editingId = null;
+          saveBtn.textContent = "Add Course";
+          cancelBtn.classList.add("hidden");
+        } else {
+          createCourse(title, mentor);
+        }
+        titleInput.value = "";
+        mentorInput.value = "";
+      });
+
+      cancelBtn.addEventListener("click", () => {
+        editingId = null;
+        titleInput.value = "";
+        mentorInput.value = "";
+        saveBtn.textContent = "Add Course";
+        cancelBtn.classList.add("hidden");
+      });
+
+      // render list from localStorage
+      function renderCourses() {
+        const courses = getCourses();
+        listDiv.innerHTML = ""; // clear previous
+        if (courses.length === 0) {
+          listDiv.textContent = "No courses yet. Add one above.";
+          return;
+        }
+
+        courses.forEach((c) => {
+          const row = document.createElement("div");
+          row.className = "course";
+          const info = document.createElement("div");
+          info.innerHTML = `<strong>${escapeHtml(
+            c.title
+          )}</strong><div>Mentor: ${escapeHtml(c.mentor)}</div>`;
+          const controls = document.createElement("div");
+          controls.className = "controls";
+
+          const editBtn = document.createElement("button");
+          editBtn.textContent = "Edit";
+          editBtn.addEventListener("click", () => {
+            editingId = c.id;
+            titleInput.value = c.title;
+            mentorInput.value = c.mentor;
+            saveBtn.textContent = "Save Changes";
+            cancelBtn.classList.remove("hidden");
+            // scroll to form so user sees fields on small screens
+            titleInput.scrollIntoView({ behavior: "smooth", block: "center" });
+          });
+
+          const delBtn = document.createElement("button");
+          delBtn.textContent = "Delete";
+          delBtn.addEventListener("click", () => {
+            if (confirm(`Delete "${c.title}"?`)) deleteCourse(c.id);
+          });
+
+          controls.appendChild(editBtn);
+          controls.appendChild(delBtn);
+
+          row.appendChild(info);
+          row.appendChild(controls);
+          listDiv.appendChild(row);
+        });
+      }
+
+      // very small helper to avoid HTML injection
+      function escapeHtml(str) {
+        if (!str) return "";
+        return str
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;");
+      }
+
+      // initial render
+      renderCourses();
+    </script>
+  </body>
+</html>
