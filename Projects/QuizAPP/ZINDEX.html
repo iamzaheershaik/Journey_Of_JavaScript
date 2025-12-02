@@ -1,95 +1,145 @@
-<!-- Created By Ali Aslan  -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Awesome Quiz App | Ali Aslan</title>
-    <link rel="stylesheet" href="style.css" />
-    <!-- FontAweome CDN Link for Icons-->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <!-- start Quiz button -->
-    <div class="start_btn"><button>Start Quiz</button></div>
+  <body class="bg-yellow-300 min-h-screen flex items-center justify-center p-4">
+    <!-- Start Button -->
+    <div
+      class="start_btn fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+    >
+      <button
+        class="bg-white text-black text-2xl font-bold px-8 py-4 border-4 border-black neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-150 active:translate-x-2 active:translate-y-2 active:shadow-none"
+      >
+        Start Quiz
+      </button>
+    </div>
 
     <!-- Info Box -->
-    <div class="info_box">
-      <div class="info-title"><span>Some Rules of this Quiz</span></div>
-      <div class="info-list">
-        <div class="info">
-          1. You will have only <span>15 seconds</span> per each question.
+    <div
+      class="info_box fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl bg-white border-4 border-black neo-shadow-lg opacity-0 pointer-events-none scale-95 transition-all duration-300"
+    >
+      <div class="info-title bg-cyan-400 border-b-4 border-black px-8 py-4">
+        <span class="text-xl font-bold">Some Rules of this Quiz</span>
+      </div>
+      <div class="info-list px-8 py-6 space-y-3">
+        <div class="info text-base">
+          1. You will have only
+          <span class="font-bold text-red-600">15 seconds</span> per each
+          question.
         </div>
-        <div class="info">
+        <div class="info text-base">
           2. Once you select your answer, it can't be undone.
         </div>
-        <div class="info">
+        <div class="info text-base">
           3. You can't select any option once time goes off.
         </div>
-        <div class="info">
+        <div class="info text-base">
           4. You can't exit from the Quiz while you're playing.
         </div>
-        <div class="info">
+        <div class="info text-base">
           5. You'll get points on the basis of your correct answers.
         </div>
       </div>
-      <div class="buttons">
-        <button class="quit">Exit Quiz</button>
-        <button class="restart">Continue</button>
+      <div
+        class="buttons flex justify-end gap-3 px-8 py-4 border-t-4 border-black bg-gray-100"
+      >
+        <button
+          class="quit bg-white text-black px-6 py-2 border-3 border-black neo-shadow-sm font-semibold hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-150"
+        >
+          Exit Quiz
+        </button>
+        <button
+          class="restart bg-pink-400 text-black px-6 py-2 border-3 border-black neo-shadow-sm font-semibold hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-150"
+        >
+          Continue
+        </button>
       </div>
     </div>
 
     <!-- Quiz Box -->
-    <div class="quiz_box">
-      <header>
-        <div class="title">Awesome Quiz Application</div>
-        <div class="timer">
-          <div class="time_left_txt">Time Left</div>
-          <div class="timer_sec">15</div>
+    <div
+      class="quiz_box fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl bg-white border-4 border-black neo-shadow-lg opacity-0 pointer-events-none scale-95 transition-all duration-300"
+    >
+      <header
+        class="relative bg-lime-300 border-b-4 border-black px-8 py-5 flex items-center justify-between"
+      >
+        <div class="title text-xl font-bold">Awesome Quiz Application</div>
+        <div
+          class="timer bg-blue-100 border-3 border-blue-900 px-3 py-2 flex items-center gap-3 neo-shadow-sm"
+        >
+          <div class="time_left_txt font-medium text-blue-900">Time Left</div>
+          <div
+            class="timer_sec bg-black text-white font-bold text-lg px-3 py-1 border-2 border-black min-w-[45px] text-center"
+          >
+            15
+          </div>
         </div>
-        <div class="time_line"></div>
+        <div
+          class="time_line absolute bottom-0 left-0 h-1 bg-red-600 w-0"
+        ></div>
       </header>
-      <section>
-        <div class="que_text">
-          <!-- Here I've inserted question from JavaScript -->
+
+      <section class="px-8 py-6 bg-white min-h-[320px]">
+        <div class="que_text text-2xl font-bold mb-6">
+          <!-- Question text goes here -->
         </div>
-        <div class="option_list">
-          <!-- Here I've inserted options from JavaScript -->
+        <div class="option_list space-y-4">
+          <!-- Options will be inserted here -->
         </div>
       </section>
 
-      <!-- footer of Quiz Box -->
-      <footer>
-        <div class="total_que">
-          <!-- Here I've inserted Question Count Number from JavaScript -->
+      <footer
+        class="px-8 py-4 flex items-center justify-between border-t-4 border-black bg-gray-50"
+      >
+        <div class="total_que flex items-center">
+          <!-- Question counter will be inserted here -->
         </div>
-        <button class="next_btn">Next Que</button>
+        <button
+          class="next_btn bg-orange-400 text-black px-5 py-2 text-lg font-semibold border-3 border-black neo-shadow-sm opacity-0 pointer-events-none scale-95 transition-all duration-300 hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
+        >
+          Next Que
+        </button>
       </footer>
     </div>
 
     <!-- Result Box -->
-    <div class="result_box">
-      <div class="icon">
+    <div
+      class="result_box fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white border-4 border-black neo-shadow-lg px-8 py-10 flex flex-col items-center opacity-0 pointer-events-none scale-95 transition-all duration-300"
+    >
+      <div class="icon text-8xl text-yellow-400 mb-4">
         <i class="fas fa-crown"></i>
       </div>
-      <div class="complete_text">You've completed the Quiz!</div>
-      <div class="score_text">
-        <!-- Here I've inserted Score Result from JavaScript -->
+      <div class="complete_text text-2xl font-bold mb-4 text-center">
+        You've completed the Quiz!
       </div>
-      <div class="buttons">
-        <button class="restart">Replay Quiz</button>
-        <button class="quit">Quit Quiz</button>
+      <div
+        class="score_text flex flex-col items-center gap-2 mb-6 text-lg font-medium"
+      >
+        <!-- Score will be inserted here -->
+      </div>
+      <div class="buttons flex gap-4">
+        <button
+          class="restart bg-green-400 text-black px-6 py-3 text-lg font-bold border-3 border-black neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-150"
+        >
+          Replay Quiz
+        </button>
+        <button
+          class="quit bg-red-400 text-black px-6 py-3 text-lg font-bold border-3 border-black neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-150"
+        >
+          Quit Quiz
+        </button>
       </div>
     </div>
-
-    <!-- Inside this JavaScript file I've inserted Questions and Options only -->
     <script src="js/questions.js"></script>
-
-    <!-- Inside this JavaScript file I've coded all Quiz Codes -->
     <script src="js/script.js"></script>
   </body>
 </html>
