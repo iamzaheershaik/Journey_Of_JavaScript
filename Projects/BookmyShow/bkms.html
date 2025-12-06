@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookMyShow Clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+
+            <div class="nav-left">
+                <img src="https://cdn.brandfetch.io/id4J58sqa_/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B"
+                    alt="BookMyShow" class="logo-img">
+            </div>
+
+            <div class="nav-center">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" placeholder="Search for Movies, Events, Plays, Sports and Activities">
+                </div>
+            </div>
+
+            <div class="nav-right">
+
+                <div class="location-selector" id="cityDropdown">
+                    <div class="dropdown-trigger">
+                        <span class="selected-text">Select City</span>
+                        <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                    </div>
+
+                    <ul class="dropdown-menu">
+                        <li data-value="Surat">Surat</li>
+                        <li data-value="Mumbai">Mumbai</li>
+                        <li data-value="Delhi-NCR">Delhi-NCR</li>
+                        <li data-value="Bengaluru">Bengaluru</li>
+                        <li data-value="Hyderabad">Hyderabad</li>
+                        <li data-value="Ahmedabad">Ahmedabad</li>
+                        <li data-value="Chennai">Chennai</li>
+                        <li data-value="Pune">Pune</li>
+                        <li data-value="Kolkata">Kolkata</li>
+                    </ul>
+                </div>
+
+                <button class="sign-in-btn">Sign in</button>
+
+                <div class="menu-icon">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <script src="bkms.js"></script>
+</body>
+
+</html>
