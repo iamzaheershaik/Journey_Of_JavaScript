@@ -1,74 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SnapCart - Home</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
-  </head>
-  <body>
-    <header class="header">
-      <div class="head-left">
-        <p>Free Delivery</p>
-        <p>7 Day Easy Returns</p>
-        <p>Bestprices</p>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SnapCart - Home</title>
+  <link rel="stylesheet" href="./Styles/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="head-left">
+      <p>Free Delivery</p>
+      <p>7 Day Easy Returns</p>
+      <p>Bestprices</p>
+    </div>
+    <div class="head-right">
+      <div class="blog">
+        <i class="bi bi-substack"></i>
+        <p>Blog</p>
       </div>
-      <div class="head-right">
-        <div class="blog">
-          <i class="bi bi-substack"></i>
-          <p>Blog</p>
-        </div>
-        <div class="help-center">
-          <i class="bi bi-question-circle"></i>
-          <p>Help</p>
-        </div>
-        <div class="sell">
-          <i class="bi bi-bag-fill"></i>
-          <p>Sell</p>
-        </div>
+      <div class="help-center">
+        <i class="bi bi-question-circle"></i>
+        <p>Help</p>
       </div>
-    </header>
-
-    <div class="mainHead">
-      <div class="mainLeft">
-        <a href="index.html" class="logo"></a>
-      </div>
-
-      <div class="mainCenter">
-        <input type="text" placeholder="Search Products" />
-      </div>
-
-      <div class="mainRight">
-        <a href="login.html" class="login-link">
-          <div class="login">
-            <i class="bi bi-person-circle"></i>
-            <p>LOGIN</p>
-          </div>
-        </a>
-
-        <div class="my-cart">
-          <i class="bi bi-cart-check"></i>
-          <p>CART</p>
-        </div>
-
-        <div class="app">
-          <i class="bi bi-box-arrow-in-up-right"></i>
-          <p>Download</p>
-        </div>
+      <div class="sell">
+        <i class="bi bi-bag-fill"></i>
+        <p>Sell</p>
       </div>
     </div>
+  </header>
 
-    <main>
-      <h2 style="padding: 20px 48px; color: #333">Trending Products</h2>
-      <div id="product-container" class="product-grid">
-        <p class="loading">Loading products...</p>
+  <div class="mainHead">
+    <div class="mainLeft">
+      <a href="index.html" class="logo"></a>
+    </div>
+
+    <div class="mainCenter">
+      <input type="text" placeholder="Search Products" />
+    </div>
+
+    <div class="mainRight">
+      <a href="login.html" class="login-link">
+        <div class="login">
+          <i class="bi bi-person-circle"></i>
+          <p>LOGIN</p>
+        </div>
+      </a>
+
+      <a href="cart.html" style="text-decoration: none; color: inherit;">
+        <div class="my-cart">
+          <i class="bi bi-cart-check"></i>
+          <p>CART <span id="cart-count"
+              style="font-size:10px; background:white; color:red; padding:2px 5px; border-radius:50%; display:none;">0</span>
+          </p>
+        </div>
+      </a>
+
+      <div class="app">
+        <i class="bi bi-box-arrow-in-up-right"></i>
+        <p>Download</p>
       </div>
-    </main>
+    </div>
+  </div>
 
-    <script src="script.js"></script>
-  </body>
+  <main>
+    <h2 style="padding: 20px 48px; color: #333">Trending Products</h2>
+    <div id="product-container" class="product-grid">
+      <p class="loading">Loading products...</p>
+    </div>
+  </main>
+
+  <script src="./JS_Scripts/script.js"></script>
+</body>
+
 </html>

@@ -43,3 +43,37 @@ function displayProducts(products) {
     productContainer.appendChild(card);
   });
 }
+document.addEventListener("DOMContentLoaded", () => {
+    checkLoginStatus(); // Check if user is logged in
+    
+    const productContainer = document.getElementById("product-container");
+    if (productContainer) {
+        fetchProducts();
+    }
+});
+
+function checkLoginStatus() {
+    const token = localStorage.getItem('userToken');
+    const loginText = document.querySelector('.login p');
+    const loginLink = document.querySelector('.login-link');
+    
+    if (token && loginText) {
+        // User is logged in
+        const username = localStorage.getItem('username');
+        loginText.textContent = username.toUpperCase(); // Show Username
+        
+        // Change link to logout behavior
+        loginLink.href = "#";
+        loginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const confirmLogout = confirm("Do you want to logout?");
+            if(confirmLogout) {
+                localStorage.removeItem('userToken');
+                localStorage.removeItem('username');
+                window.location.reload(); // Reload to reset
+            }
+        });
+    }
+}
+
+// ... rest of your fetchProducts code
