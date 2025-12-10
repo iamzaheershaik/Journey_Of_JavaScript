@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    <div class="mainHead">
+      <div class="mainLeft">
+        <a href="index.html" class="logo"></a>
+      </div>
+      <div class="mainRight">
+        <div class="my-cart">
+          <i class="bi bi-cart-check"></i>
+          <p>CART</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="details-container" id="details-container">
+      <p class="loading">Loading details...</p>
+    </div>
+
+    <script>
+      // Simple inline JS to fetch single product based on URL param
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get("id");
+      const container = document.getElementById("details-container");
+
+      if (productId) {
+        fetch(`https://fakestoreapi.com/products/${productId}`)
+          .then((res) => res.json())
+          .then((product) => {
+            container.innerHTML = `
+                    <div class="detail-wrapper">
+                        <div class="detail-image">
+                            <img src="${product.image}" alt="${product.title}">
+                        </div>
+                        <div class="detail-info">
+                            <span class="category">${product.category}</span>
+                            <h1>${product.title}</h1>
+                            <p class="rating">Rating: ${product.rating.rate} <i class="bi bi-star-fill" style="color:orange"></i> (${product.rating.count} reviews)</p>
+                            <h2 class="price">$${product.price}</h2>
+                            <p class="description">${product.description}</p>
+                            <button class="add-btn">Add to Cart</button>
+                            <a href="index.html" class="back-link">Continue Shopping</a>
+                        </div>
+                    </div>
+                `;
+          });
+      } else {
+        container.innerHTML = "<p>Product not found.</p>";
+      }
+    </script>
+  </body>
+</html>
