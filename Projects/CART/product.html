@@ -1,62 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Details</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
-  </head>
-  <body>
-    <div class="mainHead">
-      <div class="mainLeft">
-        <a href="index.html" class="logo"></a>
-      </div>
-      <div class="mainRight">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details</title>
+  <link rel="stylesheet" href="./Styles/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+</head>
+
+<body>
+  <div class="mainHead">
+    <div class="mainLeft">
+      <a href="index.html" class="logo"></a>
+    </div>
+    <div class="mainRight">
+      <a href="cart.html" style="text-decoration: none; color: inherit;">
         <div class="my-cart">
           <i class="bi bi-cart-check"></i>
-          <p>CART</p>
+          <p>CART <span id="cart-count"
+              style="font-size:10px; background:white; color:red; padding:2px 5px; border-radius:50%; display:none;">0</span>
+          </p>
         </div>
-      </div>
+      </a>
     </div>
+  </div>
 
-    <div class="details-container" id="details-container">
-      <p class="loading">Loading details...</p>
-    </div>
+  <div class="details-container" id="details-container">
+    <p class="loading">Loading details...</p>
+  </div>
 
-    <script>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('id');
+    const container = document.getElementById('details-container');
 
-      const params = new URLSearchParams(window.location.search);
-      const productId = params.get("id");
-      const container = document.getElementById("details-container");
+    // Global variable to hold current product data
+    let currentProduct = null;
 
-      if (productId) {
+    if(productId) {
         fetch(`https://fakestoreapi.com/products/${productId}`)
-          .then((res) => res.json())
-          .then((product) => {
+        .then(res => res.json())
+        .then(product => {
+            currentProduct = product; // Save data for cart
             container.innerHTML = `
-                    <div class="detail-wrapper">
-                        <div class="detail-image">
-                            <img src="${product.image}" alt="${product.title}">
-                        </div>
-                        <div class="detail-info">
-                            <span class="category">${product.category}</span>
-                            <h1>${product.title}</h1>
-                            <p class="rating">Rating: ${product.rating.rate} <i class="bi bi-star-fill" style="color:orange"></i> (${product.rating.count} reviews)</p>
-                            <h2 class="price">$${product.price}</h2>
-                            <p class="description">${product.description}</p>
-                            <button class="add-btn">Add to Cart</button>
-                            <a href="index.html" class="back-link">Continue Shopping</a>
-                        </div>
+                <div class="detail-wrapper">
+                    <div class="detail-image">
+                        <img src="${product.image}" alt="${product.title}">
                     </div>
-                `;
-          });
-      } else {
+                    <div class="detail-info">
+                        <span class="category">${product.category}</span>
+                        <h1>${product.title}</h1>
+                        <p class="rating">Rating: ${product.rating.rate} <i class="bi bi-star-fill" style="color:orange"></i></p>
+                        <h2 class="price">$${product.price}</h2>
+                        <p class="description">${product.description}</p>
+                        
+                        <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+                        
+                        <a href="index.html" class="back-link">Continue Shopping</a>
+                    </div>
+                </div>
+            `;
+        });
+    } else {
         container.innerHTML = "<p>Product not found.</p>";
-      }
-    </script>
-  </body>
+    }
+
+    // --- ADD TO CART FUNCTION ---
+    function addToCart() {
+        if(!currentProduct) return;
+
+        // 1. Get existing cart from LocalStorage
+        let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+
+        // 2. Check if product already exists
+        const existingItem = cart.find(item => item.id === currentProduct.id);
+
+        if(existingItem) {
+            existingItem.quantity += 1; // Increase quantity
+        } else {
+            // Add new item with quantity 1
+            cart.push({
+                id: currentProduct.id,
+                title: currentProduct.title,
+                price: currentProduct.price,
+                image: currentProduct.image,
+                quantity: 1
+            });
+        }
+
+        // 3. Save back to LocalStorage
+        localStorage.setItem('myCart', JSON.stringify(cart));
+
+        // 4. Feedback to user
+        alert("Product added to cart!");
+    }
+</script>
+</body>
+
 </html>

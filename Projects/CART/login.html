@@ -1,37 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="mainHead">
-      <div class="mainLeft">
-        <a href="index.html" class="logo"></a>
-      </div>
-      <div class="mainCenter">
-        <h2 style="color: white">Secure Login</h2>
-      </div>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="./Styles/style.css">
+</head>
+
+<body>
+  <div class="mainHead">
+    <div class="mainLeft">
+      <a href="index.html" class="logo"></a>
+    </div>
+    <div class="mainCenter">
+      <h2 style="color: white;">Secure Login</h2>
     </div>
 
-    <div class="login-container">
-      <form class="login-form">
-        <h2>Welcome Back</h2>
-        <div class="form-group">
-          <label>Email / Username</label>
-          <input type="text" placeholder="Enter your email" />
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" placeholder="Enter your password" />
-        </div>
-        <button type="submit" class="btn-login">Login</button>
-        <p style="margin-top: 15px; font-size: 14px">
-          <a href="index.html" style="color: #e40046">Back to Home</a>
+    <a href="cart.html" style="text-decoration: none; color: inherit;">
+      <div class="my-cart">
+        <i class="bi bi-cart-check"></i>
+        <p>CART <span id="cart-count"
+            style="font-size:10px; background:white; color:red; padding:2px 5px; border-radius:50%; display:none;">0</span>
         </p>
-      </form>
-    </div>
-  </body>
+      </div>
+    </a>
+  </div>
+
+
+  <div class="login-container">
+    <form class="login-form" id="loginForm">
+      <h2>Welcome Back</h2>
+
+      <p id="error-msg" style="color: red; font-size: 14px; display: none; margin-bottom: 10px;"></p>
+
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Try: mor_2314" value="mor_2314">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Try: 83r5^_" value="83r5^_">
+      </div>
+      <button type="submit" class="btn-login" id="loginBtn">Login</button>
+      <p style="margin-top: 15px; font-size: 14px;">
+        <a href="index.html" style="color: #e40046;">Back to Home</a>
+      </p>
+      <p style="margin-top: 10px; font-size: 14px; border-top: 1px solid #eee; padding-top: 10px;">
+        New here? <a href="register.html" style="color: #333; font-weight: bold;">Create an account</a>
+      </p>
+
+    </form>
+  </div>
+
+  <script src="./JS_Scripts/login.js"></script>
+</body>
+
 </html>
