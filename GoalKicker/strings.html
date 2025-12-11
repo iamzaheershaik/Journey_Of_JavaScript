@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var string = "HelLo WorLD";
+      string = string.replace(
+        /([a-zA-Z])([a-zA-Z]+)/g,
+        function (match, g1, g2) {
+          return g1.toUpperCase() + g2.toLowerCase();
+        }
+      );
+      console.log(string);
+    </script>
+  </body>
+</html>

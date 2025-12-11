@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG</title>
+  </head>
+  <body>
+    <script>
+      var SVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      SVG.width = 500;
+      SVG.height = 50;
+
+      var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.setAttribute("x", 0);
+      text.setAttribute("y", 50);
+      text.style.fontFamily = "Time New Roman";
+      text.style.fontSize = "50";
+      text.textContent = "Hello World!";
+      SVG.appendChild(text);
+      document.body.appendChild(SVG);
+    </script>
+  </body>
+</html>
