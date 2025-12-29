@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid 19 Tracker</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Covid 19 Tracker</h1>
+        <select class="searchType">
+            <option value="countries">Country</option>
+            <option value="states">State (USA)</option>
+        </select>
+        <input type="text" class="inputElement" placeholder="e.g. USA, Texas, India">
+        <button class="btn">Get Data</button>
+    </div>
+
+    <div id="container">
+        <div class="activeCasesDiv">
+            Active activeCases
+            <p class="activeCases"></p>
+        </div>
+        <div class="newCasesDiv">
+            New Cases
+            <p class="newCases"></p>
+        </div>
+        <div class="recovredCasesDiv">
+            Recovered Cases
+            <p class="recoveredCases"></p>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div id="container">
+        <div class="totalCasesDiv">
+            Total Cases
+            <p class="totalCases"></p>
+        </div>
+        <div class="totalDeathsDiv">
+            New Cases
+            <p class="totalDeaths"></p>
+        </div>
+        <div class="totalTestsDiv">
+            total Deaths
+            <p class="totalDeaths"></p>
+        </div>
+    </div>
+    <script src="script/script.js">
+    </script>
+</body>
+
+</html>
