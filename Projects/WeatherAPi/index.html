@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard">
+        
+        <div class="left-panel">
+            <div class="header">
+                <h2 id="location">Locating...</h2>
+                <p id="date">--</p>
+                <h1 id="clock" class="live-clock">--:--:--</h1> 
+            </div>
+
+            <div class="current-weather">
+                <div class="icon-huge" id="weather-icon">☀️</div>
+                <h1 id="temp">--°</h1>
+                <p id="condition">Loading...</p>
+                <span id="cool-tag" class="tag">--</span>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            
+            <h3>Current Details</h3>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="label">Humidity</span>
+                    <span class="value" id="humidity">--%</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Wind</span>
+                    <span class="value" id="wind">-- km/h</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Precipitation</span>
+                    <span class="value" id="precip">-- mm</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">AQI</span>
+                    <span class="value" id="aqi">--</span>
+                </div>
+            </div>
+
+            <h3 class="forecast-title">7-Day Forecast</h3>
+            <div class="forecast-list" id="forecast-container">
+                </div>
+        </div>
+
+    </div>
+
+    <script src="./src/Weather.js"></script>
+</body>
+</html>
