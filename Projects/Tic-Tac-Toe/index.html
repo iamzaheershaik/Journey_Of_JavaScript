@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tic Tac Toe - My Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>🎮 Tic Tac Toe Game 🎮</h1>
+    <div id="message">Player X's turn</div>
+
+    <div id="board">
+      <div class="box" id="box0" onclick="makeMove(0)"></div>
+      <div class="box" id="box1" onclick="makeMove(1)"></div>
+      <div class="box" id="box2" onclick="makeMove(2)"></div>
+      <br />
+      <div class="box" id="box3" onclick="makeMove(3)"></div>
+      <div class="box" id="box4" onclick="makeMove(4)"></div>
+      <div class="box" id="box5" onclick="makeMove(5)"></div>
+      <br />
+      <div class="box" id="box6" onclick="makeMove(6)"></div>
+      <div class="box" id="box7" onclick="makeMove(7)"></div>
+      <div class="box" id="box8" onclick="makeMove(8)"></div>
+    </div>
+
+    <br />
+    <button onclick="resetGame()">Reset Game</button>
+    <script src="script.js"></script>
+  </body>
+</html>
