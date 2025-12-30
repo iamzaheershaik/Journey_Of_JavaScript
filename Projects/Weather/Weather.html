@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeatherApp</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="weather-card">
+      <div class="header">
+        <h2 id="location">Locating---</h2>
+        <p id="data">--</p>
+      </div>
+      <div class="currentWeather">
+        <div class="temp-container">
+          <h1 id="temp"></h1>
+          <p id="condition">Loading...</p>
+          <span id="cool-tag" class="tag">--</span>
+        </div>
+        <div class="icon-huge" id="weather-icon"></div>
+      </div>
+      <div class="details-grid">
+        <div class="detail-item">
+          <span class="label">Humidity</span>
+          <span class="value" id="humidity">--%</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">AQI</span>
+          <span class="value" id="aqi">--</span>
+        </div>
+      </div>
+      <div class="forecast-section">
+        <h3>7-Day Forecast</h3>
+        <div class="forecast-list" id="forecast-container"></div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
